@@ -10,10 +10,13 @@ class TextsController < ApplicationController
     # authorize @text
   end
 
+  # create não está salvando
   def create
     @text = Text.new(text_params)
     if @text.user == current_user
       @theme.text = @text
+      @text.save
+
     else
       redirect_to themes_path
     end
@@ -31,6 +34,6 @@ class TextsController < ApplicationController
   end
 
   def text_params
-    params.require(:text).permit(:grade)
+    params.require(:text).permit(:grade, :photo)
   end
 end

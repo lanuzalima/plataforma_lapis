@@ -2,8 +2,8 @@ class ThemesController < ApplicationController
   before_action :set_theme, only: [:show]
 
   def index
-    @themes = Theme.where(user_id: current_user.id)
-    
+    @themes = Theme.all
+    # @themes = Theme.where(user_id: current_user.id)
   end
 
   def new

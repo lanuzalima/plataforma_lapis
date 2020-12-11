@@ -1,4 +1,5 @@
-<h1>Todos os textos</h1>
+<h1>Todos os textos recebidos </h1>
+
 
 <div class="container mt-4">
 <h1></h1>
@@ -7,13 +8,8 @@
 <br>
 <br>
   <% @texts.each do |text| %>
-
-  <div>
-    <%=text.photo%>
-  </div>
+  
+    <%= text.user %>
+  <% end %>
 
 <%= render  "texts_path" %>
-
-
-
-<p>Find me in app/views/texts/index.html.erb</p>
