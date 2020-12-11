@@ -8,19 +8,8 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-6">
       <div class="form-login">
         <h2>Novo Texto</h2>
-
-<%# 
-
-
-
-
-
-
- %>
-
-
                 
-        <%= simple_form_for(texts_path) do |f| %>
+        <%= simple_form_for [@theme, @text] do |f| %>
         <%= f.error_notification %>
           <div class="form-inputs">
             
@@ -37,6 +26,27 @@
   </div>
 </div>
 
+<!--
+JORNADAS DO ALUNO
+
+JORNADA 1
+1) ALUNO VÊ TODAS AS PROPOSTAS (INDEX DAS THEMA)
+2) QUANDO ELE CLICA VAI PARA A PROPOSTA ESCOLHIDA (SHOW DAS THEMA)
+
+JORNADA2
+1) ELE VÊ A DESCRIÇÃO DA PROPOSTA ESCOLHIDA (COM SEUS DADOS --- SHOW DO THEMA)
+2) CLICA NO BOTÃO DE SUBMETER (NEW TEXT)
+3) NOTICE: SEU TEXTO FOI ENVIADO
+
+JORNADA 4 (VER CORREÇÃO)
+1) VER MEUS TEXTOS  
+2) VER INDEX DE TEXTOS (DUAS COLUNAS - ENVIADOS E CORRIGIDOS )
+2) CLICA NO TEXTO, ABRE A CORREÇÃO (SHOW DO TEXTO CORRIGIDO - TEXTO.EDIT)
+
+JORNADA 5 (RECORREÇÃO)
+1) ?????
+
+-->
 
 
 

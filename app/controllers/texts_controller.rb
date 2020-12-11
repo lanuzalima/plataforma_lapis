@@ -3,29 +3,24 @@ class TextsController < ApplicationController
   before_action :set_text, only: %i[show]
 
   def index
-    @texts = Text.all
+    @texts = Text.where(user_id: current_user.id)
   end
 
   def show
     # authorize @text
-    @theme = Theme.find(params[:theme_id])
   end
 
   def create
-    @theme = Theme.find(params[:theme_id])
     @text = Text.new(text_params)
-    @text.theme = @theme
-    @text.user = current_user
-    @text.grade = nil
-
-    if @text.save
-      redirect_to theme_text_path(@theme, @text)
+    if @text.user == current_user
+      @theme.text = @text
     else
-      render 'new'
+      redirect_to themes_path
     end
   end
 
   def new
+    @theme = Theme.find(params[:theme_id])
     @text = Text.new
   end
 

@@ -1,10 +1,19 @@
 
-<ul>
-    
-<%@themes.each do |theme| %>
-  <li>Gênero-textual: <%= theme.genre %></li>
-  <li>Data-incial: <%= theme.start_date %></li>
-  <li>Data final: <%= theme.end_date %> </li>
-<%end%>
-</ul>
+
+<div class="container">
+  <ul>
+      
+  <%@themes.each do |theme| %>
+    <li>Gênero-textual: <%= theme.genre %></li>
+    <li>Data-incial: <%= theme.start_date %></li>
+    <li>Data final: <%= theme.end_date %> </li>
+  <br>
+  <br>
+
+
+  <!-- EXTRA -> COLOCAR PREVIA DA PROPOSTA -->
+
+  <%end%>
+  </ul>
+  </div>
 
