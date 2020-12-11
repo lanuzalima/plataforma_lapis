@@ -1,10 +1,15 @@
 <div class="container">
+  <% @annotations.each do |key, value| %>
+    <div class="my_annos" style="display:none" 
+         data-id="<%=key%>"
+         data-original-id="<%=value[:original_id]%>" 
+         data-content="<%=value[:content]%>">
+  </div>
+  <% end %>
   <h1>Testadores</h1>
   <p>Página para teste do marker</p>
-  
 
     <%= image_tag "redacao.jpg", alt: "Redacao", width: 800, id: "annotable" %>
 
 
 </div>
-
