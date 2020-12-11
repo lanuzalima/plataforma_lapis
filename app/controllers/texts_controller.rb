@@ -8,17 +8,20 @@ class TextsController < ApplicationController
 
   def show
     # authorize @text
+    @theme = Theme.find(params[:theme_id])
   end
 
   # create não está salvando
   def create
-    @text = Text.new(text_params)
-    if @text.user == current_user
-      @theme.text = @text
-      @text.save
+    @theme = Theme.find(params[:theme_id])	
+    @text = Text.new(text_params)	    
+      if @text.user == current_user
+    @text.grade = nil	
 
+    if @text.save	
+      redirect_to theme_text_path(@theme, @text)	
     else
-      redirect_to themes_path
+      render 'new'
     end
   end
 
