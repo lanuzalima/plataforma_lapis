@@ -1,0 +1,28 @@
+<h1>Texts#show</h1>
+
+
+<%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
+<br>
+<br>
+  <% @text.each do |text| %>
+    <div class="text-image">
+      <% if text.photo.present? %>
+         <%= cl_image_tag text.photo.key%>
+      <% else %>
+         <%= image_tag "https://static.wixstatic.com/media/2bd527_3c1c98c65bfb4ba78f36b31c5a713816~mv2.png/v1/fill/w_152,h_160,al_c,q_85,usm_0.66_1.00_0.01/icone.webp" %>
+      <%end%>
+      <div class="text-info">
+        <h2><%= link_to"#{lecture.title.capitalize}", lecture_path(lecture)%></h2>
+        
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= render  "themes_path" %>
+
+
+
+
+
+<p>Find me in app/views/texts/show.html.erb</p>
