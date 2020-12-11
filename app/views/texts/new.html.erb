@@ -1,0 +1,34 @@
+<br>
+<%= link_to "Voltar para home", root_path %>
+<br>
+<br>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-6">
+      <div class="form-login">
+        <h2>Novo Texto</h2>
+
+        <div>INSERIR TEMA DA REDAÇÃO ATIVA AQUI</div>
+                
+        <%= simple_form_for(texts_new_path) do |f| %>
+        <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.input :photo, as: :file, label: "Anexar texto aqui" %>
+            <br>
+          </div>
+          <br>
+          <div class="form-actions">
+            <%= f.button :submit, "Enviar Texto", class: "btn btn-success btn-SM"  %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+</div>
+
