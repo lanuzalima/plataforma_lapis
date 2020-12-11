@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :texts
   has_many :themes
 
-  validates :name, :email, :password, :cpf, presence: true
-  validates :email, :cpf, uniqueness: true
+  validates_presence_of :name, :email, :password, :cpf
+  validates_uniqueness_of :email, :cpf
   has_one_attached :photo
 end
