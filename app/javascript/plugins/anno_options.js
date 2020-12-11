@@ -2,8 +2,6 @@
 import { Annotorious } from '@recogito/annotorious';
 import $ from 'jquery';
 
-console.log("load")
-
 const initAnnotorious = () => {  
   const anno = new Annotorious({
     image: document.getElementById('annotable')
@@ -11,9 +9,7 @@ const initAnnotorious = () => {
     
   
   const get_annos = () => {
-    console.log("oi")
     const annotations = document.querySelectorAll(".my_annos")
-    console.log(annotations)
     annotations.forEach(annotation => {
       const annotation_parsed = [JSON.parse(annotation.dataset.content)];
       anno.setAnnotations(annotation_parsed);
@@ -35,31 +31,21 @@ const initAnnotorious = () => {
     });
   });
 
-  // ELABORANDO O DELETE
-
-  // anno.on('deleteAnnotation', function(annotation) {
-  //   const tags = document.querySelectorAll(".my_annos");
-  //   console.log(`/image_tag/${annotation.id}`)
-  //   const get_id = () => { 
-  //     let tag_id = "";
-  //     tags.forEach((tag)=>{
-  //       if(tag.dataset.id = annotation.id){
-  //         tag_id = annotation.id;
-  //         console.log(tag_id)
-  //       }
-  //     });
-  //     return tag_id;
-  //   };
-  //   const stringfied = JSON.stringify(annotation);
-  //   $.ajax({
-  //     url: `/image_tag/${annotation.id}`,
-  //     data: {},
-  //     type: "DELETE",
-  //     success: function (data) {
-  //         console.log(data);
-  //     }
-  //   });
-  // });
+  anno.on('deleteAnnotation', function(annotation) {
+    const tags = document.querySelectorAll(".my_annos");
+    tags.forEach((tag)=>{
+      if(tag.dataset.originalId == annotation.id){
+        $.ajax({
+          url: `/annotations/${tag.dataset.id}`,
+          data: {},
+          type: "DELETE",
+          success: function (data) {
+              console.log(data);
+          }
+        });
+      }
+    });
+  });
 
 
 }
