@@ -3,28 +3,30 @@ class TextsController < ApplicationController
   before_action :set_text, only: %i[show]
 
   def index
-    @texts = Text.all
+    @texts = Text.where(user_id: current_user.id)
   end
 
   def show
     # authorize @text
-    @user = @text.user
-    @theme = @text.theme
+    @theme = Theme.find(params[:theme_id])
   end
 
+  # create não está salvando
   def create
-    @text = Text.new(text_params)
-    # authorize @lecture
-    @text.user = current_user
+    @theme = Theme.find(params[:theme_id])	
+    @text = Text.new(text_params)	    
+      if @text.user == current_user
+    @text.grade = nil	
 
-    if @text.save
-      redirect_to text_path(@text)
+    if @text.save	
+      redirect_to theme_text_path(@theme, @text)	
     else
       render 'new'
     end
   end
 
   def new
+    @theme = Theme.find(params[:theme_id])
     @text = Text.new
   end
 
@@ -35,6 +37,6 @@ class TextsController < ApplicationController
   end
 
   def text_params
-    params.require(:text).permit(:user_id, :theme_id, :grade)
+    params.require(:text).permit(:grade, :photo)
   end
 end
