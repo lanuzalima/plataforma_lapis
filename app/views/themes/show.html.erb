@@ -1,0 +1,22 @@
+<div class="container mt-4">
+<h1>Minhas propostas</h1>
+
+<%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
+<br>
+<br>
+	<div class="card-theme">
+		<h2><%= link_to"#{@theme.title.capitalize}", themes_path(@theme)%></h2>
+		<p>Gênero-textual: <%= @theme.genre %></p>
+		<h2>Data-incial: <%= @theme.start_date %></h2>
+		<h2>Data final: <%= @theme.end_date %> </h2>
+
+    </div>
+</div>
+
+
+
+
+
+<!--
+
+ -->

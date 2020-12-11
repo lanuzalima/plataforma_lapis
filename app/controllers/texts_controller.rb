@@ -8,17 +8,18 @@ class TextsController < ApplicationController
 
   def show
     # authorize @text
-    @user = @text.user
-    @theme = @text.theme
+    @theme = Theme.find(params[:theme_id])
   end
 
   def create
+    @theme = Theme.find(params[:theme_id])
     @text = Text.new(text_params)
-    # authorize @lecture
+    @text.theme = @theme
     @text.user = current_user
+    @text.grade = nil
 
     if @text.save
-      redirect_to text_path(@text)
+      redirect_to theme_text_path(@theme, @text)
     else
       render 'new'
     end
@@ -35,6 +36,6 @@ class TextsController < ApplicationController
   end
 
   def text_params
-    params.require(:text).permit(:user_id, :theme_id, :grade)
+    params.require(:text).permit(:grade)
   end
 end

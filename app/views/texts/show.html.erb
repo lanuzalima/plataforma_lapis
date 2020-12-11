@@ -4,7 +4,7 @@
 <%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
 <br>
 <br>
-  <% @text.each do |text| %>
+  <% @texts.each do |text| %>
     <div class="text-image">
       <% if text.photo.present? %>
          <%= cl_image_tag text.photo.key%>
@@ -23,3 +23,10 @@
 
 
 <p>Find me in app/views/texts/show.html.erb</p>
+
+
+
+
+
+
+

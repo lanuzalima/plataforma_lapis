@@ -6,7 +6,15 @@
 <%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
 <br>
 <br>
-  <% @text.each do |text| %>
+  <% @texts.each do |text| %>
+
+  <%= link_to text.user.name, theme_text_path(text)    %>
+
+
+
+
+
+
     <div class="text-image">
       <% if text.photo.present? %>
          <%= cl_image_tag text.photo.key%>
@@ -22,6 +30,13 @@
 </div>
 
 <%= render  "themes_path" %>
+
+
+tabela textos 
+joao
+paulo 
+
+
 
 
 <p>Find me in app/views/texts/index.html.erb</p>
