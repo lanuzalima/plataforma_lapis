@@ -26,11 +26,11 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-import { initAnnotorious } from "../plugins/anno_options";
+import { get_annos } from "../plugins/anno_options";
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  initAnnotorious();
+  get_annos();
 });

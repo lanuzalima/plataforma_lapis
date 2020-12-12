@@ -21,7 +21,7 @@ class AnnotationsController < ApplicationController
   private
 
   def annotation_params
-    params.require(:annotation).permit(:original_id, :content)
+    params.require(:annotation).permit(:original_id, :content, :text_id)
   end
 
   def set_annotation
