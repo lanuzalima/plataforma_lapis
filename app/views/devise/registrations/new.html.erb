@@ -20,7 +20,7 @@
                                 required: true,
                                 autofocus: true,
                                 input_html: { autocomplete: "cpf" }%>
-                    <%= f.input :role, label: "Perfil",
+                    <%= f.input :role, label: "Perfil", collection: ["Sou professor", "Sou estudante"],
                                 required: true,
                                 autofocus: true,
                                 input_html: { autocomplete: "Perfil" }%>
