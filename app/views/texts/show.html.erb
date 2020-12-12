@@ -1,0 +1,32 @@
+<h1>Texts#show</h1>
+
+
+<%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
+<br>
+<br>
+  <% @texts.each do |text| %>
+    <div class="text-image">
+      <% if text.photo.present? %>
+         <%= cl_image_tag text.photo.key%>
+      <% else %>
+         <%= image_tag "https://viacarreira.com/wp-content/uploads/2015/12/espelho-da-redacao-enem-2018-o-que-e-como-consultar.jpg", alt: "Redacao", width: 800, id: "annotable" %>
+      <%end%>
+      <div class="text-info">
+        
+        
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= render  "themes_path" %>
+
+
+<p>Find me in app/views/texts/show.html.erb</p>
+
+
+
+
+
+
+

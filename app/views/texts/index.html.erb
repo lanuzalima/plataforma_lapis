@@ -1,0 +1,15 @@
+<h1>Todos os textos recebidos </h1>
+
+
+<div class="container mt-4">
+<h1></h1>
+
+<%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
+<br>
+<br>
+  <% @texts.each do |text| %>
+  
+    <%= text.user %>
+  <% end %>
+
+<%= render  "texts_path" %>
