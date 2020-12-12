@@ -9,7 +9,7 @@ const initAnnotorious = () => {
     
   
   const get_annos = () => {
-    const annotations = document.querySelectorAll(".my_annos")
+    const annotations = document.querySelectorAll(".annot")
     annotations.forEach(annotation => {
       const annotation_parsed = [JSON.parse(annotation.dataset.content)];
       anno.setAnnotations(annotation_parsed);
@@ -25,28 +25,50 @@ const initAnnotorious = () => {
       data: {"annotation[original_id]": annotation.id,
              "annotation[content]": stringfied},
       type: "POST",
+      success: () => {
+        const annots =  document.querySelector(".my_annots");
+        annots.insertAdjacentHTML('afterend', 
+          `<annot class='annot' style='display:none' data-original-id='${annotation.id}' data-content='${stringfied}' </annot>`
+        )
+      }
+    });
+  });
+
+  anno.on('updateAnnotation', function(annotation) {
+    const stringfied = JSON.stringify(annotation);
+    let annot =  document.querySelector(`[data-original-id*="${annotation.id}"]`);
+    const annots =  document.querySelector(".my_annots");
+    
+    annot.parentNode.removeChild(annot);
+    annots.insertAdjacentHTML('afterbegin', 
+      `<annot class='annot' style='display:none' data-original-id='${annotation.id}' data-content='${stringfied}' </annot>`
+    )
+
+    annot =  document.querySelector(`[data-original-id*="${annotation.id}"]`);
+    $.ajax({
+      url: `/annotation/update_by_original/${annot.dataset.originalId}`,
+      data: {
+              "annotation[original_id]": annot.dataset.originalId,
+              "annotation[content]": annot.dataset.content
+            },
+      type: "PATCH",
       success: function (data) {
-          console.log(data);
+        alert("Comentário atualizado.")
       }
     });
   });
 
   anno.on('deleteAnnotation', function(annotation) {
-    const tags = document.querySelectorAll(".my_annos");
-    tags.forEach((tag)=>{
-      if(tag.dataset.originalId == annotation.id){
-        $.ajax({
-          url: `/annotations/${tag.dataset.id}`,
-          data: {},
-          type: "DELETE",
-          success: function (data) {
-              console.log(data);
-          }
-        });
+    const annot =  document.querySelector(`[data-original-id*="${annotation.id}"]`);
+    $.ajax({
+      url: `/annotation/del_by_original/${annot.dataset.originalId}`,
+      data: {"annotation[original_id]": annot.dataset.originalId},
+      type: "DELETE",
+      success: () => {
+          alert("Comentário deletado.")
       }
     });
   });
-
 
 }
 

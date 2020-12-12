@@ -10,10 +10,11 @@ class AnnotationsController < ApplicationController
     end
   end
 
-  def update
+  def update_by_original
+    @annotation.update(annotation_params)
   end
 
-  def destroy
+  def del_by_original
     @annotation.destroy
   end
 
@@ -24,6 +25,6 @@ class AnnotationsController < ApplicationController
   end
 
   def set_annotation
-    @annotation = Annotation.find(params[:id])
+    @annotation = Annotation.where(original_id: params[:annotation][:original_id]).limit(1)[0]
   end
 end
