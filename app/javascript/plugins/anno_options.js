@@ -52,9 +52,9 @@ const initAnnotorious = () => {
               "annotation[content]": annot.dataset.content
             },
       type: "PATCH",
-      success: function (data) {
-        alert("Comentário atualizado.")
-      }
+      // success: function (data) {
+      //   alert("Comentário atualizado.")
+      // }
     });
   });
 
@@ -64,9 +64,9 @@ const initAnnotorious = () => {
       url: `/annotation/del_by_original/${annot.dataset.originalId}`,
       data: {"annotation[original_id]": annot.dataset.originalId},
       type: "DELETE",
-      success: () => {
-          alert("Comentário deletado.")
-      }
+      // success: () => {
+      //     alert("Comentário deletado.")
+      // }
     });
   });
 
