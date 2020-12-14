@@ -1,16 +1,25 @@
 <div class="container">
-  <annots class="my_annots">
-    <% @annotations.each do |key, value| %>
-      <annot class="annot" style="display:none"
-           data-original-id="<%=value[:original_id]%>" 
-           data-content="<%=value[:content]%>">
-      </annot>
-    <% end %>
-  </annots>
+  <user data-name="<%= current_user.name %>" data-user-id="<%= @user_id %>" data-role="<%= current_user.role %>"></user>
+  
+  <% if @annotations %>
+    <annots class="my_annots" data-text-id="<%= @text_id %>">
+      <% @annotations.each do |key, value| %>
+        <annot class="annot" style="display:none"
+             data-original-id="<%=value[:original_id]%>" 
+             data-user-id="<%=value[:user_id]%>"
+             data-content="<%=value[:content]%>">
+        </annot>
+      <% end %>
+    </annots>
+  <% else %>
+    <p id="no_annots">Não há anotações para este documento</p>
+  <% end %>
+  
   <h1>Testadores</h1>
   <p>Página para teste do marker</p>
-
-    <%= image_tag "redacao.jpg", alt: "Redacao", width: 800, id: "annotable" %>
-
+  <a href="" class="btn btn-primary" id="anno_toggle">Anotar</a> <br>
+  
+  <%= image_tag "redacao_2.png", alt: "Redacao", width: 800, id: "annotable",
+    data: {text_id: "#{@text_id}"} %>
 
 </div>
