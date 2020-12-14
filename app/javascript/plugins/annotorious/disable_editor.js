@@ -1,3 +1,6 @@
+// Procura pelo annotation layer e o remove
+// Recriar o annotation layer sem as annotations e mantendo apenas as marcações
+
 const disableEditor = (anno) => {
   const rects = document.querySelectorAll('rect');
   const viewBox = document.querySelector('svg').attributes.viewBox.value;
@@ -6,7 +9,7 @@ const disableEditor = (anno) => {
   const annotable = document.getElementById('annotable');
   layer.parentNode.removeChild(layer)
 
-  annotable.insertAdjacentHTML('beforebegin', `<svg class="a9s-annotationlayer" viewBox="${viewBox}"><g> </g></svg>`)
+  annotable.insertAdjacentHTML('beforebegin', `<svg class="a9s-annotationlayer" viewBox="${viewBox}" style="cursor: default"><g> </g></svg>`)
 
   layer = document.querySelector('.a9s-annotationlayer').firstChild;
   rects.forEach(rect => {
