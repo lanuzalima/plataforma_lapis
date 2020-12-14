@@ -1,9 +1,7 @@
-<br>
-<%= link_to "Voltar para home", root_path, class: "btn btn-success btn-sm" %>
-<br>
-<br>
-
 <div class="container">
+  <a href="/" class="btn btn-primary btn-sm my-3">
+    <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Voltar para home
+  </a>
   <div class="row justify-content-center">
     <div class="col-xs-12 col-sm-6 col-sm-offset-6">
       <div class="form-login">
@@ -19,15 +17,20 @@
                         autofocus: true %>
             <%= f.input :title, label: "Título/ Tema",
                         required: true %>
-            <%= f.input :start_date, label: "Data inicial",
-                        required: true %>
-            <br>
-          
-            <%= f.input :end_date, label: "Data final",
-                        required: true %>
-                               
-             <%= f.input :photo, as: :file, label: "Anexar proposta aqui" %>
-            <br>
+            <div class="d-flex justify-content-between">            
+              <%= f.input :start_date, label: "Data inicial",
+                          as: :string,
+                          :input_html => { :class => 'datepicker' },
+                          required: true %>
+              <br>
+              <%= f.input :end_date, label: "Data final",
+                          as: :string,
+                          :input_html => { :class => 'datepicker' },
+                          required: true %>
+                                
+              <br>
+            </div>
+            <%= f.input :photo, as: :file, label: "Anexar proposta aqui" %>
           </div>
           <br>
           <div class="form-actions">
