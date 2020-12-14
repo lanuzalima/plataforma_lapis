@@ -10,13 +10,29 @@
       <p>Aguardando confirmação para: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+
+    <%= f.input :name, label: "Nome",
+                required: true,
+                autofocus: true %>
+    <%= f.input :email,
+                required: true,
+                input_html: { autocomplete: "email" }%>
+    <%= f.input :cpf,
+                required: true,
+                input_html: { autocomplete: "cpf" }%>
+    <%= f.radio_button :role,
+                'Teacher',
+                required: false %> Professor            
+    <%= f.radio_button :role,
+                'Student',
+                required: false %> Estudante      
     <%= f.input :password,
                 hint: "Deixe em branco se não deseja alterar",
                 required: false,
-                input_html: { autocomplete: "nova-senha" } %>
+                input_html: { autocomplete: "password" } %>
     <%= f.input :password_confirmation,
                 required: false,
-                input_html: { autocomplete: "nova-senha" } %>
+                input_html: { autocomplete: "password" } %>
     <%= f.input :current_password,
                 hint: "Precisamos de sua senha atual para confirmar as alterações",
                 required: true,
