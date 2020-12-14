@@ -3,6 +3,15 @@
 <%= link_to "Editar usuário", edit_user_registration_path %> <br>
 <%= link_to "Teste marcador", pages_test_path %>
 
+<% if current_user.role == "Teacher" || "Professor"  %>
+  <%= link_to "Inserir novo tema", new_theme_path, class: "btn btn-primary" %>
+  <%= link_to "Ver minhas propostas", themes_path, class: "btn btn-info" %>
+<% else %>
+  <%= link_to "Ver propostas", themes_path, class: "btn btn-info"   %>
+<% end %>
+
+
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -14,8 +23,8 @@
       <img class="first-slide" src="https://image.freepik.com/fotos-gratis/mulher-africana-com-cara-de-surpresa-segurando-o-caderno_273443-3016.jpg" alt="First slide">
       <div class="container">
         <div class="carousel-caption d-none d-md-block text-left">
-          <h1>Correção Digital de Textos</h1>
-          <p>Ajude seus alunos on-line.</p>
+          <h1>Plataforma de correção de textos</h1>
+          <p>Correção leve e simples como um lápis.</p>
           <p><a class="btn btn-lg btn-primary" href="#" role="button">Entre na plataforma</a></p>
         </div>
       </div>
@@ -61,22 +70,22 @@
   <div class="row">
     <div class="col-lg-4">
       <img class="rounded-circle" src="https://www.redditstatic.com/avatars/avatar_default_05_0DD3BB.png" alt="Generic placeholder image" width="140" height="140">
-      <h2>O que é o Lápis?</h2>
-      <p>Solução muito massa. Vai resolver todos seus problemas</p>
+      <h2>O o Lápis é?</h2>
+      <p>Olataforma gratuita para correção de textos!</p>
       <p><a class="btn btn-secondary" href="#" role="button">Descubra &raquo;</a></p>
     </div>
     <!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <img class="rounded-circle" src="https://www.redditstatic.com/avatars/avatar_default_05_0DD3BB.png" alt="Generic placeholder image" width="140" height="140">
-      <h2>Coisa muito massa</h2>
-      <p>Solução 0800, grátis, free!!!</p>
+      <h2>O que o lápis faz?</h2>
+      <p>organiza, otimiza e facilita a correção de textos!</p>
       <p><a class="btn btn-secondary" href="#" role="button">Veja mais &raquo;</a></p>
     </div>
     <!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <img class="rounded-circle" src="https://www.redditstatic.com/avatars/avatar_default_05_0DD3BB.png" alt="Generic placeholder image" width="140" height="140">
-      <h2>Coisa mais massa ainda</h2>
-      <p>O Lápis é sensacional demais!</p>
+      <h2>O que o lápis oferece</h2>
+      <p>Ferramente intituiva e simples para destque e comnetário de textos!</p>
       <p><a class="btn btn-secondary" href="#" role="button">Olhe lá &raquo;</a></p>
     </div>
     <!-- /.col-lg-4 -->

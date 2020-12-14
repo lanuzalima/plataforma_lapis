@@ -4,6 +4,8 @@
   <ul>
       
   <%@themes.each do |theme| %>
+    <li>ID: <%= theme.id %> </li>
+    <li>Título: <%= link_to"#{theme.title}", theme_path(theme) %></li>
     <li>Gênero-textual: <%= theme.genre %></li>
     <li>Data-incial: <%= theme.start_date %></li>
     <li>Data final: <%= theme.end_date %> </li>

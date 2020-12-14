@@ -1,22 +1,34 @@
 <div class="container mt-4">
-<h1>Minhas propostas</h1>
+  <h2>Minhas propostas</h2>
 
-<%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
+  <%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
+       
+
 <br>
 <br>
 	<div class="card-theme">
-		<h2><%= link_to"#{@theme.title.capitalize}", themes_path(@theme)%></h2>
-		<p>Gênero-textual: <%= @theme.genre %></p>
-		<h2>Data-incial: <%= @theme.start_date %></h2>
-		<h2>Data final: <%= @theme.end_date %> </h2>
-
+    <div class="h2">Tema do texto:</div>
+      <h2> <%= @theme.title.capitalize %> <h2>
+		      
+        <h3>Gênero-textual: <%= @theme.genre %></h3>
+        <h3>Data-incial: <%= @theme.start_date %></h3>
+        <h3>Data final: <%= @theme.end_date %> </h3>
+     
+    <% if current_user.role == "Student" %>
+      <ul> 
+      <% @theme.texts.each do |text|  %>
+        <%= link_to  theme_text_path(@theme,text) do %>
+          <li> <%= text.user.name %></li>
+        <% end %>
+      <% end %>
+      </ul>
+    <% else%> 
+       <div class="div">
+        <%= link_to "Enviar texto", new_theme_text_url(@theme, @text), class: "a btn btn-primary bt-sm my-2" %> 
+        <%= link_to "Baixar proposta", @theme.photo, target: :_blank, class: "btn btn-primary" %>
+       </div>
+    <% end %>
+      
+  
     </div>
 </div>
-
-
-
-
-
-<!--
-
- -->
