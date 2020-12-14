@@ -3,12 +3,10 @@
 <%= link_to "Editar usuário", edit_user_registration_path %> <br>
 <%= link_to "Teste marcador", pages_test_path %>
 
-<% if current_user.role == "Teacher" %>
   <%= link_to "Inserir novo tema", new_theme_path, class: "btn btn-primary" %>
   <%= link_to "Ver minhas propostas", themes_path, class: "btn btn-info" %>
-<% else %>
   <%= link_to "Ver propostas", themes_path, class: "btn btn-info"   %>
-<% end %>
+
 
 
 
