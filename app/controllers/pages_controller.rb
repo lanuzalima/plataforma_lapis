@@ -5,9 +5,10 @@ class PagesController < ApplicationController
   end
 
   def test
-    @text_id_1 = '1'
-    @text_id_2 = '2'
-    text_annotations = Annotation.where(text_id: @text_id)
+    text_id = 1
+    @text_id = mask(text_id)
+    @user_id = mask(current_user.id)
+    text_annotations = Annotation.where(text_id: text_id)
     if text_annotations.length.positive?
       mount_annotations(text_annotations)
     else
@@ -22,11 +23,14 @@ class PagesController < ApplicationController
     text_annotations.each do |anno|
       @annotations[anno.id] = {}
       @annotations[anno.id][:original_id] = anno.original_id
+      @annotations[anno.id][:user_id] = mask(anno.user_id)
       @annotations[anno.id][:content] = anno.content
-      @annotations[anno.id][:content] = anno.text_id
     end
     @annotations
   end
-end
 
-# @mask_id = "##{current_user.name[0..3]}-#{(current_user.id + 7) * 13}-#{current_user.email[0]}#{(current_user.email.length + 52) * 23}"
+  def mask(id)
+    num = rand(1..100)
+    "##{(num + 5) * 31}-#{((id + 7) * 13) + num}"
+  end
+end
