@@ -7,7 +7,7 @@ import $, { get } from 'jquery';
 
 const destroy = (anno) => {
   anno.on('deleteAnnotation', function(annotation) {
-    if (confirm("Deseja deletar esta anotação?")) {
+    if (confirm("Deseja deletar esta marcação?")) {
     const anno_to_del =  document.querySelector(`[data-original-id*="${annotation.id}"]`);
     $.ajax({
     url: `/annotation/del_by_original/${anno_to_del.dataset.originalId}`,

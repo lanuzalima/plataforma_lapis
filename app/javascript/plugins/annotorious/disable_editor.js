@@ -1,5 +1,5 @@
 // Procura pelo annotation layer e o remove
-// Recriar o annotation layer sem as annotations e mantendo apenas as marcações
+// Recriar o annotation layer sem as annotations e mantendo apenas as formas salvas
 
 const disableEditor = (anno) => {
   const rects = document.querySelectorAll('rect');
@@ -25,6 +25,14 @@ const disableEditor = (anno) => {
     const rect_height = rect.attributes.height.value;
     layer.insertAdjacentHTML('afterbegin', `<g class="a9s-annotation"> <rect class="${rect_class}"  x="${rect_x}" y="${rect_y}" width="${rect_width}" height="${rect_height}" > </rect> </g>`)
   });
+
+  polys.forEach(polygon => {
+    const poly_class = polygon.attributes.class.value;
+    const poly_points = polygon.attributes.points.value;
+    layer.insertAdjacentHTML('afterbegin', `<g class="a9s-annotation"> <polygon class="${poly_class}"  points="${poly_points}" > </polygon> </g>`)
+  });
+
+
 }
 
 export {disableEditor}

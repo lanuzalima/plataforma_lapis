@@ -2,6 +2,7 @@ import { initAnnotorious } from './init_annotorius';
 import { disableEditor } from './disable_editor';
 import {renderEditableAnnots} from './render_editable'
 
+
 // Verificar o papel(role) do usuário 
 // Se for professor, disponibilizar as opções de marcação
 // Se for aluno, não permitir marcação
@@ -9,7 +10,7 @@ import {renderEditableAnnots} from './render_editable'
 
 // OBS >>>>>>> Os roles precisarão ser mudados conforme forem definidos pela equipe
 
-const showAnnotations = (anno) => {
+const showAnnotations = (anno, shape) => {
   
   const annots = document.querySelector('.my_annots')
   const userRole = document.querySelector('user').dataset.role
@@ -17,12 +18,13 @@ const showAnnotations = (anno) => {
   
   if (userRole == "Teacher" || userRole == "Professor") {
     if (annots) {
-      initAnnotorious(anno);
+      initAnnotorious(anno, shape);
     } else {
-      initAnnotorious(anno); 
+      initAnnotorious(anno, shape);
     }
   } else {
-      disableEditor(anno);
+    initAnnotorious(anno, shape);
+    disableEditor(anno);
   }
 };
 

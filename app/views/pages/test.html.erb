@@ -17,8 +17,15 @@
   
   <h1>Testadores</h1>
   <p>Página para teste do marker</p>
-  <a href="" class="btn btn-primary" id="anno_toggle">Anotar</a> <br>
-  
+
+  <tools style="position: sticky, top: 0">
+    <h5>Ferramentas</h5>
+    <div style="display: flex">
+      <a href="" class="btn btn-success mr-1 mb-2" id="tools_rect" title="Ferramenta desenhar retângulo"><i   class="fas fa-vector-square"></i></a> <br>
+      <a href="" class="btn btn-success mb-2" id="tools_polygon" title="Ferramenta desenhar polígono"><i   class="fas fa-draw-polygon"></i></a><br>
+    </div>
+  </tools>
+
   <%= image_tag "redacao_2.png", alt: "Redacao", width: 800, id: "annotable",
     data: {text_id: "#{@text_id}"} %>
 
