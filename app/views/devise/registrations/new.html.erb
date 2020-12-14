@@ -20,6 +20,10 @@
                                 required: true,
                                 autofocus: true,
                                 input_html: { autocomplete: "cpf" }%>
+                    <%= f.input :role, label: "Perfil", collection: ["Sou professor", "Sou estudante"],
+                                required: true,
+                                autofocus: true,
+                                input_html: { autocomplete: "Perfil" }%>
                     <%= f.input :password, label: "Senha",
                                 required: true,
                                 hint: ("#{@minimum_password_length} caracteres no mínimo" if @minimum_password_length),
@@ -32,7 +36,7 @@
                 </div>
 
                 <div class="form-actions">
-                    <%= f.button :submit, "Confirmar cadastro" %>
+                    <%= f.button :submit, "Confirmar cadastro", class: "btn btn-info btn-lg" %>
                 </div>
                 <% end %>
 
