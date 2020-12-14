@@ -17,6 +17,7 @@
                         autofocus: true %>
             <%= f.input :title, label: "Título/ Tema",
                         required: true %>
+
             <div class="d-flex justify-content-between">            
               <%= f.input :start_date, label: "Data inicial",
                           as: :string,
@@ -30,7 +31,8 @@
                                 
               <br>
             </div>
-            <%= f.input :photo, as: :file, label: "Anexar proposta aqui" %>
+            <%= f.input :photo, as: :file, label: "Incluir proposta" %>
+
           </div>
           <br>
           <div class="form-actions">

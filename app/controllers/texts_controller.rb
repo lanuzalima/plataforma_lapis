@@ -11,23 +11,30 @@ class TextsController < ApplicationController
     @theme = Theme.find(params[:theme_id])
   end
 
-  # create não está salvando
+  # create nao está salvando
   def create
-    @theme = Theme.find(params[:theme_id])	
-    @text = Text.new(text_params)	    
-      if @text.user == current_user
-    @text.grade = nil	
-
-    if @text.save	
-      redirect_to theme_text_path(@theme, @text)	
-    else
-      render 'new'
+    @theme = Theme.find(params[:theme_id])
+    @text = Text.new(text_params)
+    @text.user = current_user
+    @text.theme_id = @theme.id
+    if @text.user == current_user
+      @text.grade = nil
+      if @text.save
+        redirect_to theme_path(@theme)
+      else
+        render 'new'
+      end
     end
   end
 
   def new
     @theme = Theme.find(params[:theme_id])
     @text = Text.new
+  end
+
+  def destroy
+    @text.destroy
+    redirect_to texts_path
   end
 
   private

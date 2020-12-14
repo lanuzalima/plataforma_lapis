@@ -1,9 +1,9 @@
 class ThemesController < ApplicationController
-  before_action :set_theme, only: [:show]
+  before_action :set_theme, only: %i[show destroy]
 
   def index
-    @themes = Theme.all
-    # @themes = Theme.where(user_id: current_user.id)
+    # @themes = Theme.all
+    @themes = Theme.where(user_id: current_user.id)
   end
 
   def new
@@ -39,6 +39,6 @@ class ThemesController < ApplicationController
   end
 
   def theme_params
-    params.require(:theme).permit(:genre, :title, :start_date, :end_date)
+    params.require(:theme).permit(:genre, :title, :start_date, :end_date, :photo)
   end
 end
