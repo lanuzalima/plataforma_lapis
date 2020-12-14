@@ -14,7 +14,7 @@
         <h3>Data-incial: <%= @theme.start_date %></h3>
         <h3>Data final: <%= @theme.end_date %> </h3>
      
-    <% if current_user.role == "Student" %>
+    <% if current_user.role == "Teacher" %>
       <ul> 
       <% @theme.texts.each do |text|  %>
         <%= link_to  theme_text_path(@theme,text) do %>
