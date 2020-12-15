@@ -1,6 +1,6 @@
 class TextsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[new create show]
-  before_action :set_text, only: %i[show destroy]
+  before_action :set_text, only: %i[show]
 
   def index
     @texts = Text.where(user_id: current_user.id)
@@ -40,16 +40,8 @@ class TextsController < ApplicationController
   end
 
   def destroy
-    if @text.annotations.present?
-      flash[:alert] = "Não é possível apagar textos corrigidos"
-      # render 'show'
-      redirect_to theme_text_path
-    else
-      @text.destroy
-      redirect_to themes_path
-    end
-    # @text.destroy
-    # redirect_to themes_path
+    @text.destroy
+    redirect_to texts_path
   end
 
   private

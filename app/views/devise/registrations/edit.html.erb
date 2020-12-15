@@ -24,11 +24,12 @@
                       required: true,
                       input_html: { autocomplete: "cpf" }%>
           <%= f.radio_button :role,
-                      'Professor',
+                      'Teacher',
                       required: false %> Professor            
           <%= f.radio_button :role,
-                      'Estudante',
-                      required: false %> Estudante      
+                      'Student',
+                      required: false %> Estudante  
+          <%= f.input :photo, as: :file, label: "Foto" %>    
           <%= f.input :password,
                       hint: "Deixe em branco se não deseja alterar",
                       required: false,
