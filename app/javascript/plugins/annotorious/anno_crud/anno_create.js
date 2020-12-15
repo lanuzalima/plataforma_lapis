@@ -39,12 +39,12 @@ const create = (anno) => {
         if (document.querySelector(".coments") == null) {
           const text = document.querySelector(".text-image")
           text.insertAdjacentHTML('afterend',
-          `<div class='coments' data-text-id='${textId}'>`)
+          `<div class='coments' data-text-id='${textId}'><h4>Comentários</h4></div>`)
         }
 
-        const coment = document.querySelector(".coment");
-        coment.insertAdjacentHTML('beforebegin',
-        `<div class="coment" id="COMENT${annotation.id}" data-cmref="${annotation.id}">
+        const coment = document.querySelector(".coments");
+        coment.insertAdjacentHTML('beforeend',
+        ` <div class="coment" id="COMENT${annotation.id}" data-cmref="${annotation.id}">
           <div class="coment_content"><span class="comment_header">Comentário</span><span class="comment_text">${annotation.body[0].value}</span></div>
           <div class="coment_author"><span class="author_header">Professor:</span><span class="author_name">${annotation.body[0].creator.name}</span></div>
         </div>`
