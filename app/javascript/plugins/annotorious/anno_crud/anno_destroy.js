@@ -14,7 +14,12 @@ const destroy = (anno) => {
     data: {"annotation[original_id]": anno_to_del.dataset.originalId},
     type: "DELETE",
     success: () => {
+      const anno_to_del =  document.querySelector(`[data-original-id*="${annotation.id}"]`);
+      const coment_to_del =  document.querySelector(`[data-cmref*="${annotation.id}"]`);
+      console.log(annotation.id)
+      coment_to_del.parentNode.removeChild(coment_to_del)
       anno_to_del.parentNode.removeChild(anno_to_del)
+
     //     alert("Comentário deletado.")
     }
     });

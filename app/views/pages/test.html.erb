@@ -1,4 +1,7 @@
 <div class="container">
+    
+  <div id="comment_pop_box"></div>
+  
   <user data-name="<%= current_user.name %>" data-user-id="<%= @user_id %>" data-role="<%= current_user.role %>"></user>
   
   <% if @annotations %>
@@ -18,16 +21,35 @@
   <h1>Testadores</h1>
   <p>Página para teste do marker</p>
 
-  <tools style="position: sticky, top: 0">
-    <h5>Ferramentas</h5>
-    <div style="display: flex">
-      <a href="" class="btn btn-success mr-1 mb-2" id="tools_rect" title="Ferramenta desenhar retângulo"><i   class="fas fa-vector-square"></i></a> <br>
-      <a href="" class="btn btn-success mb-2" id="tools_polygon" title="Ferramenta desenhar polígono"><i   class="fas fa-draw-polygon"></i></a><br>
-    </div>
-  </tools>
+  
+  <% if current_user.role == 'Teacher' || current_user.role == 'Professor' %>
+    <tools>
+      <h5>Ferramentas</h5>
+      <div style="display: flex">
+        <a href="" class="btn btn-success mr-1 mb-2" id="tools_rect" title="Ferramenta desenhar   retângulo"><i   class="fas fa-vector-square"></i></a> <br>
+        <a href="" class="btn btn-success mb-2" id="tools_polygon" title="Ferramenta desenhar   polígono"><i   class="fas fa-draw-polygon"></i></a><br>
+      </div>
+    </tools>
+  <% end %>
+  
+
 
   <%= image_tag "redacao_2.png", alt: "Redacao", width: 800, id: "annotable",
     data: {text_id: "#{@text_id}"} %>
+
+  <% if @annotations %>
+    <div class="coments" data-text-id="<%= @text_id %>">
+      <h4>Comentários</h4>
+      <% @annotations.each do |key, value| %>
+        <div class="coment" id="COMENT<%=value[:original_id]%>" data-cmref="<%=value[:original_id]%>">
+             <div class="coment_content">Comentário: <%=value[:parsed]['body'][0]['value'] %></div>
+             <div class="coment_author">Professor: <%=value[:parsed]['body'][0]['creator']['name'] %></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  
 
   <br>
   <%= link_to "Editar usuário", edit_user_registration_path %>

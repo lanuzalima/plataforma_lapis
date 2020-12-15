@@ -1,30 +1,76 @@
-<h1>Texts#show</h1>
+<div class="container col-6 justify-content-center">
 
+  <user data-name="<%= current_user.name %>" data-user-id="<%= @owner_id %>" data-role="<%=  current_user.role %>"></user>
 
-<%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
-<br>
-<br>
-  <% @texts.each do |text| %>
-    <div class="text-image">
-      <% if text.photo.present? %>
-         <%= cl_image_tag text.photo.key%>
-      <% else %>
-         <%= image_tag "https://viacarreira.com/wp-content/uploads/2015/12/espelho-da-redacao-enem-2018-o-que-e-como-consultar.jpg", alt: "Redacao", width: 800, id: "annotable" %>
-      <%end%>
-      <div class="text-info">
-        
-        
+  <% if @annotations %>
+    <annots class="my_annots" data-text-id="<%= @text_id %>">
+      <% @annotations.each do |key, value| %>
+        <annot class="annot" style="display:none"
+             data-original-id="<%=value[:original_id]%>" 
+             data-user-id="<%=value[:user_id]%>"
+             data-content="<%=value[:content]%>">
+        </annot>
+      <% end %>
+    </annots>
+  <% else %>
+    <p id="no_annots">Não há anotações para este documento</p>
+  <% end %>
+
+  
+  <% if current_user == @text.user %>
+    <h6>Seu texto para o tema:</h6>
+  <% else %>
+    <h6>Texto de <%= @text.user.name  %> para o tema:</h6>
+  <% end %>
+  <h1><%= @text.theme.title %></h1>
+  <p>Gênero: <%= @text.theme.genre %></p>
+  <p>Proposto por: <%= @text.theme.user.name %></p>
+  
+
+  <%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
+  <br>
+  <br>
+
+  <div class="text-image">
+    <%# if @text.photo.present? %>
+       <%#= cl_image_tag text.photo.key%>
+    <%# else %>
+    <% if current_user.role == 'Teacher' || current_user.role == 'Professor' %>
+      <div class="tools">
+        <div class="row">
+          <h6>Ferramentas</h6>
+        </div>
+        <div>
+          <a href="" class="btn btn-success" id="tools_rect" title="Ferramenta desenhar retângulo"><i class="fas fa-vector-square"></i></a>
+          <a href="" class="btn btn-success" id="tools_polygon" title="Ferramenta desenhar polígono"><i class="fas fa-draw-polygon"></i></a>
+          <a href="" class="btn btn-success" id="tools_zoom_in" title="Aumentar zoom"><i class="fas fa-plus"></i></a>
+          <a href="" class="btn btn-success" id="tools_zoom_out" title="Diminuir zoom"><i class="fas fa-minus"></i></a>
+          <a href="" class="btn btn-success" id="tools_zoom_reset" title="Resetar zoom"><i class="fas fa-arrows-alt"></i></a>
+        </div>
       </div>
+    <% end %>
+       <%= image_tag "https://viacarreira.com/wp-content/uploads/2015/12/espelho-da-redacao-enem-2018-o-que-e-como-consultar.jpg", alt: "Redacao", width: 800, id: "annotable", data: {text_id: "#{@text_id}"}%>
+    <%#end%>
+    <div class="text-info">
+    </div>
+  </div>
+
+  <% if @annotations %>
+    <div class="coments" data-text-id="<%= @text_id %>">
+      <h4>Comentários</h4>
+      <% @annotations.each do |key, value| %>
+        <div class="coment" id="COMENT<%=value[:original_id]%>" data-cmref="<%=value[:original_id]%>">
+          <div class="coment_content"><span class="comment_header">Comentário:</span><span class="comment_text"><%=value[:parsed]['body'][0]['value'] %></span></div>
+          <div class="coment_author"><span class="author_header">Professor: </span><span class="author_name"><%=value[:parsed]['body'][0]['creator']['name'] %></span></div>
+        </div>
+      <% end %>
     </div>
   <% end %>
+
+  <%= link_to 'Voltar', :back %>
+  <div id="comment_pop_box"></div>
+
 </div>
-
-<%= render  "themes_path" %>
-
-
-<p>Find me in app/views/texts/show.html.erb</p>
-
-
 
 
 

@@ -1,3 +1,5 @@
+require 'json'
+
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home, :test, :annotations]
 
@@ -25,6 +27,7 @@ class PagesController < ApplicationController
       @annotations[anno.id][:original_id] = anno.original_id
       @annotations[anno.id][:user_id] = mask(anno.user_id)
       @annotations[anno.id][:content] = anno.content
+      @annotations[anno.id][:parsed] = JSON.parse(anno.content)
     end
     @annotations
   end

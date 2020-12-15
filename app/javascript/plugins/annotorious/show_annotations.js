@@ -10,10 +10,9 @@ import {renderEditableAnnots} from './render_editable'
 
 // OBS >>>>>>> Os roles precisarão ser mudados conforme forem definidos pela equipe
 
-const showAnnotations = (anno, shape) => {
-  
+const showAnnotations = (anno, shape, userRole) => {
   const annots = document.querySelector('.my_annots')
-  const userRole = document.querySelector('user').dataset.role
+  
   renderEditableAnnots(anno);
   
   if (userRole == "Teacher" || userRole == "Professor") {
@@ -23,7 +22,6 @@ const showAnnotations = (anno, shape) => {
       initAnnotorious(anno, shape);
     }
   } else {
-    initAnnotorious(anno, shape);
     disableEditor(anno);
   }
 };
