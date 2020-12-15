@@ -6,13 +6,13 @@
 
 <br>
 <br>
-	<div class="card-theme">
-    <div class="h2">Tema do texto: <%= @theme.title.capitalize %></div>
-      <h3>Gênero-textual: <%= @theme.genre %></h3>
-      <h3>Data-incial: <%= @theme.start_date %></h3>
-      <h3>Data final: <%= @theme.end_date %> </h3>
+	<div class="">
+    <h2>Tema do texto:  <%= @theme.title.capitalize %> <h2>
+    <h3>Gênero textual: <%= @theme.genre %></h3>
+    <h3>Data de início: <%= @theme.start_date.strftime("%d/%m/%Y") %></h3>
+    <h3>Data final de entrega: <%= @theme.end_date.strftime("%d/%m/%Y") %> </h3>
      
-    <% if current_user.role == "Professor" %>
+    <% if current_user.role == "Teacher" %>
       <ul> 
       <% @theme.texts.each do |text|  %>
         <%= link_to  theme_text_path(@theme,text) do %>
