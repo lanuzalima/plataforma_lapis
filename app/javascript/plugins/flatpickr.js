@@ -1,6 +1,7 @@
 import flatpickr from "flatpickr";
 flatpickr(".datepicker", {
   dateFormat: 'd/m/Y',
+  language: "pt-BR",
   locale: {
     firstDayOfWeek: 0,
     weekdays: {
