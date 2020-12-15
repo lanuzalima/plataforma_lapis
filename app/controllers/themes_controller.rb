@@ -1,8 +1,7 @@
 class ThemesController < ApplicationController
-  before_action :set_theme, only: %i[show destroy]
+  before_action :set_theme, only: %i[show destroy update]
 
   def index
-    # @themes = Theme.all
     if current_user.role == "Teacher"
       @themes = Theme.where(user_id: current_user.id)
     else
@@ -28,14 +27,26 @@ class ThemesController < ApplicationController
   def show
   end
 
-  #   def edit
-  #     @theme = Theme.find(params[:id])
-  #   end
+  def edit
+    @theme = Theme.find(params[:id])
+  end
 
-  #   def update
-  #     @theme.update(theme_params)
-  #     redirect_to theme_path(@theme)
-  #   end
+  def update
+    @theme.update(theme_params)
+    redirect_to theme_path(@theme),
+                notice: "Sua proposta foi editada"
+  end
+
+  def destroy
+    if @theme.texts.present?
+      flash.now[:alert] = "Não é possível apagar, seus alunos já enviaram textos"
+      render 'show'
+    else
+      @theme.destroy
+      redirect_to themes_path
+    end
+  end
+
   private
 
   def set_theme

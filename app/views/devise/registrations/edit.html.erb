@@ -28,7 +28,8 @@
                       required: false %> Professor            
           <%= f.radio_button :role,
                       'Student',
-                      required: false %> Estudante      
+                      required: false %> Estudante  
+          <%= f.input :photo, as: :file, label: "Foto" %>    
           <%= f.input :password,
                       hint: "Deixe em branco se não deseja alterar",
                       required: false,

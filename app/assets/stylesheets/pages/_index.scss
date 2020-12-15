@@ -1,2 +1,40 @@
 // Import page-specific CSS files here.
 @import "home";
+.card-theme {
+  overflow: hidden;
+  height: 160px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-theme h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  text-decoration: none;
+}
+
+.card-theme p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .8;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+.card-theme .card-theme-infos {
+  padding: 16px;
+}
+.card-theme .card-theme-infos a {
+  color: rgb(112, 112, 112);
+  text-decoration: none;
+}
+
+.card-theme .card-theme-infos a:hover {
+  color: rgb(31, 31, 31);
+  text-decoration: none;
+}

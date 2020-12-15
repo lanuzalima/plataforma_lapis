@@ -6,13 +6,11 @@
 
 <br>
 <br>
-	<div class="card-theme">
-    <div class="h2">Tema do texto:</div>
-      <h2> <%= @theme.title.capitalize %> <h2>
-		      
-        <h3>Gênero-textual: <%= @theme.genre %></h3>
-        <h3>Data-incial: <%= @theme.start_date %></h3>
-        <h3>Data final: <%= @theme.end_date %> </h3>
+	<div class="">
+    <h2>Tema do texto:  <%= @theme.title.capitalize %> <h2>
+    <h3>Gênero textual: <%= @theme.genre %></h3>
+    <h3>Data de início: <%= @theme.start_date.strftime("%d/%m/%Y") %></h3>
+    <h3>Data final de entrega: <%= @theme.end_date.strftime("%d/%m/%Y") %> </h3>
      
     <% if current_user.role == "Teacher" %>
       <ul> 
@@ -22,6 +20,8 @@
         <% end %>
       <% end %>
       </ul>
+       <%= link_to "Editar proposta", edit_theme_url(@theme), class: "a btn btn-primary bt-sm my-2" %>
+       <%= link_to "Apagar proposta", theme_url(@theme), method: :delete, class: "a btn btn-primary bt-sm my-2" %>  
     <% else%> 
        <div class="div">
         <%= link_to "Enviar texto", new_theme_text_url(@theme, @text), class: "a btn btn-primary bt-sm my-2" %> 
