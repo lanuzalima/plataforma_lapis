@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+//= require flatpickr
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -24,6 +25,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
+import "../plugins/flatpickr"
 
 // Internal imports, e.g:
 import { findAnnotable } from "../plugins/annotorious/find_annotable";
