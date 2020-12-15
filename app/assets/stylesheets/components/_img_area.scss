@@ -4,9 +4,10 @@
   background-color: darkgray;
   // display: flex;
   text-align: center;
-  min-width: 600px;
+  min-width: 300px;
   overflow: scroll;
-
+  max-width: 150vh;
+  max-height: 100vh;
 
   img {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.425);
