@@ -11,8 +11,9 @@
     <h3>Gênero textual: <%= @theme.genre %></h3>
     <h3>Data de início: <%= @theme.start_date.strftime("%d/%m/%Y") %></h3>
     <h3>Data final de entrega: <%= @theme.end_date.strftime("%d/%m/%Y") %> </h3>
+
      
-    <% if current_user.role == "Teacher" %>
+    <% if current_user.role == "Teacher" || current_user.role == "Professor"  %>
       <ul> 
       <% @theme.texts.each do |text|  %>
         <%= link_to  theme_text_path(@theme,text) do %>
@@ -30,5 +31,5 @@
     <% end %>
       
   
-    </div>
+    
 </div>
