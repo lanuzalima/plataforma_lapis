@@ -8,7 +8,7 @@ const tools = (anno, userRole) => {
     const zoomInBtn = document.getElementById("tools_zoom_in")
     const zoomOutBtn = document.getElementById("tools_zoom_out")
     const zoomReset = document.getElementById("tools_zoom_reset")
-    const page = document.querySelector(".text-image")
+    const page = document.getElementById("annotable")
     
     rectBtn.addEventListener('click', event => {
       event.preventDefault();
