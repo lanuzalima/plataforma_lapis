@@ -41,11 +41,12 @@ class TextsController < ApplicationController
 
   def destroy
     if @text.annotations.present?
-      flash.now[:alert] = "Não é possível apagar textos corrigidos"
-      render 'show'
+      flash[:alert] = "Não é possível apagar textos corrigidos"
+      # render 'show'
+      redirect_to theme_text_path
     else
       @text.destroy
-      redirect_to theme_path
+      redirect_to themes_path
     end
     # @text.destroy
     # redirect_to themes_path

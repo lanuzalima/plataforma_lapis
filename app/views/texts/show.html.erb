@@ -30,7 +30,8 @@
   <%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
   <%# Se o texto tiver anotações, alert: Texto corrigido, não pode ser apagado 
       Se o texto não tive anotações, redirecionar para show de themes %>
-  <%= link_to "Apagar texto", theme_path, method: :delete, class: "a btn btn-primary bt-sm my-2" %>
+  <%= link_to "Apagar texto", theme_text_path, method: :delete, 
+  data: { confirm: "Atenção! Deseja apagar seu texto?" }, class: "a btn btn-primary bt-sm my-2" %>
   <br>
   <br>
 
