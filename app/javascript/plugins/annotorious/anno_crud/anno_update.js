@@ -23,8 +23,8 @@ const update = (anno) => {
     const comment = document.querySelector(`[data-cmref*="${annotation.id}"]`);
     comment.innerHTML = ""
     comment.insertAdjacentHTML('afterbegin',
-      `<div class="coment_content"><span class="comment_header">Comentário: </span><span class="comment_text">${annotation.body[0].value}</span></div>
-      <div class="coment_author"><span class="author_header">Professor: </span><span class="author_name">${annotation.body[0].creator.name}</span></div>`
+      `<div class="coment_content"><span class="comment_header">Comentário</span><span class="comment_text">${annotation.body[0].value}</span></div>
+      <div class="coment_author"><span class="author_header">Professor:</span><span class="author_name">${annotation.body[0].creator.name}</span></div>`
     )
 
 

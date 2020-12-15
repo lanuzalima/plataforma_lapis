@@ -60,8 +60,8 @@
       <h4>Comentários</h4>
       <% @annotations.each do |key, value| %>
         <div class="coment" id="COMENT<%=value[:original_id]%>" data-cmref="<%=value[:original_id]%>">
-          <div class="coment_content"><span class="comment_header">Comentário:</span><span class="comment_text"><%=value[:parsed]['body'][0]['value'] %></span></div>
-          <div class="coment_author"><span class="author_header">Professor: </span><span class="author_name"><%=value[:parsed]['body'][0]['creator']['name'] %></span></div>
+          <div class="coment_content"><span class="comment_header">Comentário</span><span class="comment_text"><%=value[:parsed]['body'][0]['value'] %></span></div>
+          <div class="coment_author"><span class="author_header">Professor:</span><span class="author_name"><%=value[:parsed]['body'][0]['creator']['name'] %></span></div>
         </div>
       <% end %>
     </div>
