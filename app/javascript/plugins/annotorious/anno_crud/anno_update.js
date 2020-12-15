@@ -20,6 +20,14 @@ const update = (anno) => {
       `<anno class='anno' style='display:none' data-original-id='${annotation.id}' data-user-id='${userId}' data-content='${stringfiedAnno}' </anno>`
     )
 
+    const comment = document.querySelector(`[data-cmref*="${annotation.id}"]`);
+    comment.innerHTML = ""
+    comment.insertAdjacentHTML('afterbegin',
+      `<div class="coment_content"><span class="comment_header">Comentário</span><span class="comment_text">${annotation.body[0].value}</span></div>
+      <div class="coment_author"><span class="author_header">Professor:</span><span class="author_name">${annotation.body[0].creator.name}</span></div>`
+    )
+
+
     const updated_anno =  document.querySelector(`[data-original-id*="${annotation.id}"]`);
     $.ajax({
       url: `/annotation/update_by_original/${updated_anno.dataset.originalId}`,
