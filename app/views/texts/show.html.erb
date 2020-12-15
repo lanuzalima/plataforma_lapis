@@ -22,10 +22,19 @@
   <% else %>
     <h6>Texto de <%= @text.user.name  %> para o tema:</h6>
   <% end %>
+
+
+
   <h1><%= @text.theme.title %></h1>
   <p>Gênero: <%= @text.theme.genre %></p>
   <p>Proposto por: <%= @text.theme.user.name %></p>
   
+
+
+<% if current_user.role != "Professor" %>
+  <%= link_to "Apagar texto", theme_text_path, method: :delete, 
+  data: { confirm: "Atenção! Deseja apagar seu texto?" }, class: "a btn btn-primary bt-sm my-2" %>
+<% end %>
 
   <%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
   <br>

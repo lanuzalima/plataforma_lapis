@@ -1,6 +1,6 @@
 class TextsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[new create show]
-  before_action :set_text, only: %i[show]
+  before_action :set_text, only: %i[show destroy]
 
   def index
     @texts = Text.where(user_id: current_user.id)
@@ -18,7 +18,6 @@ class TextsController < ApplicationController
     end
   end
 
-  # create nao está salvando
   def create
     @theme = Theme.find(params[:theme_id])
     @text = Text.new(text_params)
@@ -27,7 +26,7 @@ class TextsController < ApplicationController
     if @text.user == current_user
       @text.grade = nil
       if @text.save
-        redirect_to theme_path(@theme)
+        redirect_to theme_text_path(@theme, @text)
       else
         render 'new'
       end
@@ -40,8 +39,13 @@ class TextsController < ApplicationController
   end
 
   def destroy
-    @text.destroy
-    redirect_to texts_path
+    if @text.annotations.present?
+      flash[:alert] = "Não é possível apagar textos corrigidos"
+      redirect_to theme_text_path
+    else
+      @text.destroy
+      redirect_to themes_path
+    end
   end
 
   private
