@@ -23,12 +23,10 @@
           <%= f.input :cpf,
                       required: true,
                       input_html: { autocomplete: "cpf" }%>
-          <%= f.radio_button :role,
-                      'Teacher',
-                      required: false %> Professor            
-          <%= f.radio_button :role,
-                      'Student',
-                      required: false %> Estudante  
+          <%= f.input :role, label: "Perfil", collection: ["Professor", "Estudante"],
+                                required: true,
+                                autofocus: true,
+                                input_html: { autocomplete: "Perfil" }%>
           <%= f.input :photo, as: :file, label: "Foto" %>    
           <%= f.input :password,
                       hint: "Deixe em branco se não deseja alterar",

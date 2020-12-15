@@ -2,7 +2,7 @@ class ThemesController < ApplicationController
   before_action :set_theme, only: %i[show destroy update]
 
   def index
-    if current_user.role == "Teacher"
+    if current_user.role == "Professor" || current_user.role == "Teacher"
       @themes = Theme.where(user_id: current_user.id)
     else
       @themes = Theme.all
@@ -54,6 +54,6 @@ class ThemesController < ApplicationController
   end
 
   def theme_params
-    params.require(:theme).permit(:genre, :title, :start_date, :end_date, :photo)
+    params.require(:theme).permit(:genre, :title, :start_date, :end_date, :photo, :role)
   end
 end
