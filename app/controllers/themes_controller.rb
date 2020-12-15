@@ -3,7 +3,11 @@ class ThemesController < ApplicationController
 
   def index
     # @themes = Theme.all
-    @themes = Theme.where(user_id: current_user.id)
+    if current_user.role == "Professor"
+      @themes = Theme.where(user_id: current_user.id)
+    else
+      @themes = Theme.all
+    end
   end
 
   def new
