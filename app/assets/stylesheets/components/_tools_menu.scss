@@ -4,6 +4,7 @@
   display: flex;
   margin-left: -104px;
   margin-bottom: -200px;
+  padding: 30px auto;
 
   h6 {
     display: block;
@@ -15,6 +16,11 @@
     text-orientation: sideways;
     height: 195px;
   }
+
+  img {
+    margin: 20px auto;
+  }
+
 
   a {
     width: 35px;

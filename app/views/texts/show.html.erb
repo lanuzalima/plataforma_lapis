@@ -32,9 +32,9 @@
   <br>
 
   <div class="text-image">
-    <%# if @text.photo.present? %>
+      <%# if @text.photo.present? %>
        <%#= cl_image_tag text.photo.key%>
-    <%# else %>
+      <%# else %>
     <% if current_user.role == 'Teacher' || current_user.role == 'Professor' %>
       <div class="tools">
         <div class="row">
@@ -49,8 +49,10 @@
         </div>
       </div>
     <% end %>
+    <div>
        <%= image_tag "https://viacarreira.com/wp-content/uploads/2015/12/espelho-da-redacao-enem-2018-o-que-e-como-consultar.jpg", alt: "Redacao", width: 800, id: "annotable", data: {text_id: "#{@text_id}"}%>
-    <%#end%>
+    </div>
+      <%#end%>
     <div class="text-info">
     </div>
   </div>
