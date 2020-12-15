@@ -1,6 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+  <%= link_to "/", class: "navbar-brand" do %>
+    <%= image_tag "https://res.cloudinary.com/lanuza/image/upload/v1607980764/l%C3%A1pis-removebg-preview_qpqrvb.png", {:style => "width:30px;"}%>
+    <%="Lápis"%>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,22 +13,31 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link" %>
+          <%= link_to "Home", "/", class: "nav-link" %>
         </li>
+        
+          <a href="" class="btn btn-primary btn-sm my-3">
+    <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Voltar para home
+  </a>
         <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
+        
+          <%= link_to "Sair", destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <%= link_to "Editar perfil", "/users/edit", class: "dropdown-item" %>
+            <%= link_to "Ação", "#", class: "dropdown-item" %>
           </div>
         </li>
       <% else %>
+        <li class="nav-item active">
+          <a href="/users/sign_in" class="btn btn-light">
+            Fazer Login <i class="fa fa-sign-in-alt" aria-hidden="true"></i>
+          </a>
+        </li>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <a href="/users/sign_up" type="radio "class="nav-item btn btn-info mx-2">Cadastre-se</a>
         </li>
       <% end %>
     </ul>
