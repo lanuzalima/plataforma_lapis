@@ -51,13 +51,13 @@
       </div>
     <% end %>
     <div class="text-image">
-        <%# if @text.photo.present? %>
-         <%#= cl_image_tag text.photo.key%>
-        <%# else %>
-      <div>
-         <%= image_tag "https://viacarreira.com/wp-content/uploads/2015/12/espelho-da-redacao-enem-2018-o-que-e-como-consultar.jpg", alt: "Redacao", width: 800, id: "annotable", data: {text_id: "#{@text_id}"}%>
-      </div>
-        <%#end%>
+      <% if @text.photo.present? %>
+         <%= cl_image_tag @text.photo.key, id: "annotable", alt: "Redacao", data: {text_id: "#{@text_id}"} %>
+      <% else %>
+        <div>
+          <%= image_tag "https://viacarreira.com/wp-content/uploads/2015/12/  espelho-da-redacao-enem-2018-o-que-e-como-consultar.jpg", alt: "Redacao", width: 800, id:   "annotable", data: {text_id: "#{@text_id}"}%>
+        </div>
+      <%end%>
       <div class="text-info">
       </div>
     </div>

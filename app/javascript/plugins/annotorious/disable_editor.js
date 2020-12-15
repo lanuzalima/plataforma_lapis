@@ -12,13 +12,22 @@ const disableEditor = (anno) => {
   let layer = document.querySelector('.a9s-annotationlayer');
   const annotable = document.getElementById('annotable');
   layer.parentNode.removeChild(layer)
-  annotable.insertAdjacentHTML('beforebegin', `<svg class="a9s-annotationlayer" 
-  viewBox="${viewBox.attributes[0].ownerElement.viewBox.baseVal.x} 
-  ${viewBox.attributes[0].ownerElement.viewBox.baseVal.x} 
-  ${viewBox.attributes[0].ownerElement.viewBox.baseVal.width} 
-  ${viewBox.attributes[0].ownerElement.viewBox.baseVal.height} 
-  " 
-  style="cursor: default"><g> </g></svg>`)
+
+  if (viewBox.viewBox == null) {
+    annotable.insertAdjacentHTML('beforebegin', `<svg class="a9s-annotationlayer" 
+    viewBox="${viewBox.attributes[0].ownerElement.viewBox.baseVal.y} 
+    ${viewBox.attributes[0].ownerElement.viewBox.baseVal.x} 
+    ${viewBox.attributes[0].ownerElement.viewBox.baseVal.width} 
+    ${viewBox.attributes[0].ownerElement.viewBox.baseVal.height} 
+    "
+    style="cursor: default"><g> </g></svg>`)
+  } else {
+    annotable.insertAdjacentHTML('beforebegin', `<svg class="a9s-annotationlayer" 
+    viewBox="${parseInt(viewBox.viewBox.textContent)}
+    "
+    style="cursor: default"><g></g></svg>`)
+  }
+
 
   layer = document.querySelector('.a9s-annotationlayer').firstChild;
   rects.forEach(rect => {
