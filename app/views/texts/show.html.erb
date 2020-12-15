@@ -31,10 +31,7 @@
   <br>
   <br>
 
-  <div class="text-image">
-      <%# if @text.photo.present? %>
-       <%#= cl_image_tag text.photo.key%>
-      <%# else %>
+  <div class="editor_area">
     <% if current_user.role == 'Teacher' || current_user.role == 'Professor' %>
       <div class="tools">
         <div class="row">
@@ -49,11 +46,16 @@
         </div>
       </div>
     <% end %>
-    <div>
-       <%= image_tag "https://viacarreira.com/wp-content/uploads/2015/12/espelho-da-redacao-enem-2018-o-que-e-como-consultar.jpg", alt: "Redacao", width: 800, id: "annotable", data: {text_id: "#{@text_id}"}%>
-    </div>
-      <%#end%>
-    <div class="text-info">
+    <div class="text-image">
+        <%# if @text.photo.present? %>
+         <%#= cl_image_tag text.photo.key%>
+        <%# else %>
+      <div>
+         <%= image_tag "https://viacarreira.com/wp-content/uploads/2015/12/espelho-da-redacao-enem-2018-o-que-e-como-consultar.jpg", alt: "Redacao", width: 800, id: "annotable", data: {text_id: "#{@text_id}"}%>
+      </div>
+        <%#end%>
+      <div class="text-info">
+      </div>
     </div>
   </div>
 
@@ -70,6 +72,7 @@
   <% end %>
 
   <%= link_to 'Voltar', :back %>
+  <a href="#"><i class="fas fa-arrow-up"></i></a>
   <div id="comment_pop_box"></div>
 </div>
 
