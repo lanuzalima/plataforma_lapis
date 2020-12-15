@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   patch 'annotation/update_by_original', to: 'annotations#update_by_original'
   delete 'annotation/del_by_original', to: 'annotations#del_by_original'
 
-  resources :themes, only: %i[new create index show] do
+  resources :themes, only: %i[new create index show edit update destroy] do
     resources :texts, only: %i[index show new create edit]
 
     resources :texts, only: %i[destroy update]
