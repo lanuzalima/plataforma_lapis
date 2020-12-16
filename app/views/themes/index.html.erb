@@ -2,9 +2,44 @@
   <h1>Minhas propostas</h1>
 
   <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
-    <%= link_to "Criar novo tema", new_theme_path, class: "a btn btn-primary bt-sm my-2"%> 
+   <%= form_tag themes_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Pesquisar tema"
+            %>
+            <button name="button" type="submit" class="btn btn-light">
+              <i class="fas fa-search"></i>
+            </button>
+          <% end %>
+    <a href="/themes/new" class="btn btn-primary btn-sm my-1" data-toggle="modal" data-target="#exampleModalCenter">
+      <i class="fa fa-plus" aria-hidden="true"></i>  Novo tema
+    </a>  
   <% end%>
-    <%#= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLongTitle">Novo tema de redação</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Caro professor, insira a proposta de texto aqui</h5>
+        <%= render 'form' %>
+
+         
+      </div>
+      
+    </div>
+  </div>
+</div>
+  
   <br>
   <br>
   <div class="row">
