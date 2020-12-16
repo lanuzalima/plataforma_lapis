@@ -8,8 +8,16 @@
   padding: 20px;
   box-shadow: 2px 2px 2px 2px rgba(169, 169, 169, 0.267);
   background-color: rgba(255, 255, 255, 0.61);
-  border-radius: 8px;
+  border-radius: 5px;
 }
+
+.coment.active {
+  .comment_header {
+    background-color: rgba(83, 5, 48, 0.774);
+  }
+}
+
+
 .coment_content {
 
 } 
@@ -17,7 +25,7 @@
   display: block;
   background-color: rgba(197, 22, 118, 0.5);
   margin: -20px -20px 20px -20px;
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
   padding: 10px;
   color: rgba(255, 255, 255, 0.89);
 }
@@ -38,3 +46,4 @@
 .author_name {
   color: rgba(197, 22, 118, 0.719);
 }
+
