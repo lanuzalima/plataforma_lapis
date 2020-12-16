@@ -1,30 +1,46 @@
-<br>
-<%= link_to "Voltar para home", root_path %>
-<br>
-<br>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-6">
-      <div class="form-login">
-        <h2>Novo Texto</h2>
-                
+<div class="container mt-4">
+  <h1>Meu novo texto</h1>
+
+<%= link_to "Propostas", themes_path, class: "btn btn-primary" %>
+<br>
+<br>
+    <%#= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
+  <br>
+  <br>
+  <div class="row">
+    
+    
+
+    <div class="card-text col-lg-5 mx-2"> 
+      <div class="card-text-infos mx-2" >
+        <h2><%= @theme.genre.capitalize %>: "<%= @theme.title%>"</h2>
+        <div class="row mx-auto d-flex justify-content-space-between">
+          <p>Data Inicial: <%= @theme.start_date.strftime("%d/%m/%Y") %></p>
+          &nbsp;&nbsp;
+          <p>Data final: <%= @theme.end_date.strftime("%d/%m/%Y") %> </p>        
+        </div>
         <%= simple_form_for [@theme, @text] do |f| %>
         <%= f.error_notification %>
           <div class="form-inputs">
             
-            <%= f.input :photo, as: :file, label: "Anexar texto aqui" %>
+            <%= f.input :photo, as: :file, label: "Inserir texto" %>
             <br>
           </div>
           <br>
           <div class="form-actions">
-            <%= f.button :submit, "Enviar Texto", class: "btn btn-success btn-SM"  %>
+            <%= f.button :submit, "Enviar Texto", class: "btn btn-primary btn-md"  %>
           </div>
-        <% end %>
+        <% end %>   
+        </div>
       </div>
     </div>
+  
   </div>
 </div>
+
+
+
 
 <!--
 JORNADAS DO ALUNO
