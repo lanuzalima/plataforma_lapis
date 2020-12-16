@@ -1,5 +1,6 @@
 <div class="container col-6 justify-content-center">
 
+  <div id="comment_pop_box"></div>
   <user data-name="<%= current_user.name %>" data-user-id="<%= @owner_id %>" data-role="<%=  current_user.role %>"></user>
 
   <% if @annotations %>
@@ -42,23 +43,26 @@
   <br>
 
   <div class="editor_area">
-    <% if current_user.role == 'Teacher' || current_user.role == 'Professor' %>
       <div class="tools">
         <div class="row">
           <h6>Ferramentas</h6>
         </div>
         <div>
+        <% if current_user.role == 'Teacher' || current_user.role == 'Professor' %>
           <a href="" class="btn btn-success" id="tools_rect" title="Ferramenta desenhar retângulo"><i class="fas fa-vector-square"></i></a>
           <a href="" class="btn btn-success" id="tools_polygon" title="Ferramenta desenhar polígono"><i class="fas fa-draw-polygon"></i></a>
+        <% end %>
           <a href="" class="btn btn-success" id="tools_zoom_in" title="Aumentar zoom"><i class="fas fa-plus"></i></a>
           <a href="" class="btn btn-success" id="tools_zoom_out" title="Diminuir zoom"><i class="fas fa-minus"></i></a>
           <a href="" class="btn btn-success" id="tools_zoom_reset" title="Resetar zoom"><i class="fas fa-arrows-alt"></i></a>
         </div>
       </div>
-    <% end %>
-    <div class="text-image">
+    <div class="text-image" >
       <% if @text.photo.present? %>
-         <%= cl_image_tag @text.photo.key, id: "annotable", alt: "Redacao", data: {text_id: "#{@text_id}"} %>
+         <div id="img-holder">
+          <%= cl_image_tag(@text.photo.key, :transformation=>[
+            {:if=>"w_gt_h", :angle=>'90' }], id: "annotable", alt: "Redacao", data: {text_id: "#{@text_id}"}) %>
+         </div>
       <% else %>
         <div>
           <%= image_tag "https://viacarreira.com/wp-content/uploads/2015/12/  espelho-da-redacao-enem-2018-o-que-e-como-consultar.jpg", alt: "Redacao", width: 800, id:   "annotable", data: {text_id: "#{@text_id}"}%>
@@ -68,6 +72,7 @@
       </div>
     </div>
   </div>
+
 
   <% if @annotations %>
     <div class="coments" data-text-id="<%= @text_id %>">
@@ -84,7 +89,7 @@
 <!-- 
   <%= link_to 'Voltar', :back %>
   <a href="#"><i class="fas fa-arrow-up"></i></a>
-  <div id="comment_pop_box"></div>
+  
 </div>
 -->
 
