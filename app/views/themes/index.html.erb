@@ -1,7 +1,10 @@
 <div class="container mt-4">
   <h1>Minhas propostas</h1>
-  <%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
-  <%= link_to "Criar novo tema", new_theme_path, class: "a btn btn-primary bt-sm my-2"%> 
+
+  <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
+    <%= link_to "Criar novo tema", new_theme_path, class: "a btn btn-primary bt-sm my-2"%> 
+  <% end%>
+    <%#= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
   <br>
   <br>
   <div class="row">
@@ -19,10 +22,6 @@
       </div>
     </div>
     <%end%>
-
   </div>
-
-  <!-- EXTRA -> COLOCAR PREVIA DA PROPOSTA -->
-
-  </div>
+</div>
 

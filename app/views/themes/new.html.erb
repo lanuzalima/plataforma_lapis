@@ -2,6 +2,9 @@
   <a href="/" class="btn btn-primary btn-sm my-3">
     <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Voltar para home
   </a>
+  <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
+    <%= link_to "Propostas", themes_path, class: "a btn btn-info bt-sm my-2"%> 
+  <% end%>
   <div class="row justify-content-center">
     <div class="col-xs-12 col-sm-6 col-sm-offset-6">
       <div class="form-login">
