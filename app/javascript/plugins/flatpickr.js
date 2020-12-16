@@ -2,6 +2,8 @@ import flatpickr from "flatpickr";
 
 const calendar = () => {
   flatpickr(".datepicker", {
+    // mode: "range",
+    // minDate: "today",
     dateFormat: 'd/m/Y',
     locale: {
       firstDayOfWeek: 0,

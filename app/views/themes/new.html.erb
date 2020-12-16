@@ -1,16 +1,30 @@
+<nav aria-label="breadcrumb ">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item ml-5">
+      <a href="/">
+        <span class="sr-only">Página inicial</span>
+          <i class="icon fas fa-home"></i>
+        </a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="/themes"> Minhas propostas </a>
+      </li>
+    <li class="breadcrumb-item active" aria-current="page">Nova proposta de texto</li>
+  </ol>
+</nav>
+
+
 <div class="container">
-  <a href="/" class="btn btn-primary btn-sm my-3">
-    <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Voltar para home
-  </a>
-  <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
+<!--   <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
     <%= link_to "Propostas", themes_path, class: "a btn btn-info bt-sm my-2"%> 
-  <% end%>
+  <% end%> -->
+
   <div class="row justify-content-center">
     <div class="col-xs-12 col-sm-6 col-sm-offset-6">
       <div class="form-login">
         <h2>Nova Proposta de Texto</h2>
 
-        <div>Caro professor, insira a proposta de texto aqui</div>
+        <h4>Caro professor, insira a proposta de texto aqui</h4>
                 
          <%= render 'form' %>
          
