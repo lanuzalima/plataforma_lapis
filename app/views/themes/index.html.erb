@@ -1,20 +1,24 @@
 <div class="container mt-4">
-  <h1>Minhas propostas</h1>
+  <h1 class="my-4">Minhas propostas</h1>
 
   <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
-   <%= form_tag themes_path, method: :get do %>
-            <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "Pesquisar tema"
-            %>
-            <button name="button" type="submit" class="btn btn-light">
-              <i class="fas fa-search"></i>
-            </button>
-          <% end %>
-    <a href="/themes/new" class="btn btn-primary btn-sm my-1" data-toggle="modal" data-target="#exampleModalCenter">
+  <form class="form-inline">
+    <%= form_tag themes_path, method: :get do %>
+      <%= text_field_tag :query,
+                          params[:query],
+                          class: "form-control col-4 mr-2",
+                          placeholder: "Pesquisar tema"
+                          %>
+      <button name="button" type="submit" class="btn btn-light">
+        <i class="fas fa-search"></i>
+      </button>
+    <a href="/themes/new" class="btn btn-primary mx-2" data-toggle="modal" data-target="#exampleModalCenter">
       <i class="fa fa-plus" aria-hidden="true"></i>  Novo tema
     </a>  
+    <% end %>
+  
+  </form>
+
   <% end%>
 <!-- Button trigger modal -->
 
