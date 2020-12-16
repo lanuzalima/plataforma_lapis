@@ -14,14 +14,13 @@
 
     <div class="card-text col-lg-8 mx-2"> 
       <div class="card-text-infos mx-5" >
-        <%= @theme.title%>
+        <p><%= @theme.genre.capitalize %>: "<%= @theme.title%>"</p>
         <div class="row mx-auto d-flex justify-content-space-between">
           <p>Data Inicial: <%= @theme.start_date.strftime("%d/%m/%Y") %></p>
           &nbsp;&nbsp;
           <p>Data final: <%= @theme.end_date.strftime("%d/%m/%Y") %> </p>        
         </div>
-        <br>
-           <%= simple_form_for [@theme, @text] do |f| %>
+        <%= simple_form_for [@theme, @text] do |f| %>
         <%= f.error_notification %>
           <div class="form-inputs">
             
