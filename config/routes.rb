@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   delete 'annotation/del_by_original', to: 'annotations#del_by_original'
 
   resources :themes, only: %i[new create index show edit update destroy] do
-    resources :texts, only: %i[index show new create edit]
+    resources :texts, only: %i[show new create edit]
 
     resources :texts, only: %i[destroy update]
   end
+  get '/user/:id/texts', to: 'texts#index', as: 'user_texts'
 end

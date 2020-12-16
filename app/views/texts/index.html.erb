@@ -3,13 +3,26 @@
 
 <div class="container mt-4">
 <h1></h1>
+<% if current_user.role == "Professor" %>
+  <%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
+  <br>
+  <br>
+    <% @texts.each do |text| %>
+    
+      <%= text.user %>
+    <% end %>
+  <%= render  "texts_path" %>
 
-<%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
-<br>
-<br>
-  <% @texts.each do |text| %>
-  
-    <%= text.user %>
+<% else %>
+  <% if @texts.length == 0 %>
+    <%= "Não há textos" %>
+  <% else %>
+    <% @texts.each do |text| %>
+    
+      <%= text.theme.title %>
+      <%# FALTA COLOCAR A GRADE %>
+      <%# <%= text.theme.grade %>
+      <%= text.theme.end_date.strftime("%d/%m/%Y") %>
+    <% end %>
   <% end %>
-
-<%= render  "texts_path" %>
+<% end %>
