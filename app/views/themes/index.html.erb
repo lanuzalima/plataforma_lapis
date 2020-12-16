@@ -1,29 +1,28 @@
 <div class="container mt-4">
-<h1>Minhas propostas</h1>
-<%= link_to "Criar novo tema", new_theme_path, class: "a btn btn-info bt-sm my-2"%> 
-<%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
-<br>
-<br>
-<div class="row">
-  <%@themes.each do |theme| %>
-  <div class="card-theme col-lg-5 mx-2"> 
-    <div class="card-lecture-infos mx-2" >
-      <p>ID: <%= theme.id %> </p>
-      <h2>Título: <%= link_to"#{theme.title.capitalize}", theme_path(theme) %></h2>
-      <h5>Gênero textual: <%= theme.genre.capitalize %></h5>
-      <div class="row mx-auto d-flex justify-content-space-between">
-      <p>Data Inicial: <%= theme.start_date.strftime("%d/%m/%Y") %></p>
-      &nbsp;&nbsp;
-      <p>Data final: <%= theme.end_date.strftime("%d/%m/%Y") %> </p>  
-      
+  <h1>Minhas propostas</h1>
+
+  <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
+    <%= link_to "Criar novo tema", new_theme_path, class: "a btn btn-info bt-sm my-2"%> 
+  <% end%>
+    <%#= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
+  <br>
+  <br>
+  <div class="row">
+    <%@themes.each do |theme| %>
+    <div class="card-theme col-lg-5 mx-2"> 
+      <div class="card-lecture-infos mx-2" >
+        <p>ID: <%= theme.id %> </p>
+        <h2>Título: <%= link_to"#{theme.title.capitalize}", theme_path(theme) %></h2>
+        <h5>Gênero textual: <%= theme.genre.capitalize %></h5>
+        <div class="row mx-auto d-flex justify-content-space-between">
+        <p>Data Inicial: <%= theme.start_date.strftime("%d/%m/%Y") %></p>
+        &nbsp;&nbsp;
+        <p>Data final: <%= theme.end_date.strftime("%d/%m/%Y") %> </p>  
+        
+        </div>
       </div>
     </div>
+    <%end%>
   </div>
-  <%end%>
-
 </div>
-
-  <!-- EXTRA -> COLOCAR PREVIA DA PROPOSTA -->
-
-  </div>
 
