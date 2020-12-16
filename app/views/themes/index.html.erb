@@ -44,7 +44,7 @@
   <br>
   <div class="row">
     <%@themes.each do |theme| %>
-      <% if theme.end_date >= Time.now %>
+      <% if theme.end_date >= Date.today %>
         <div class="card-theme col-lg-5 mx-2"> 
           <div class="card-lecture-infos mx-2" >
             <p>ID: <%= theme.id %> </p>
@@ -70,7 +70,7 @@
 
 <div class="row">
     <%@themes.each do |theme| %>
-      <% if theme.end_date < Time.now %>
+      <% if theme.end_date < Date.today %>
         <div class="card-theme-inativo col-lg-5 mx-2"> 
           <div class="card-lecture-infos-inativo mx-2" >
             <p>ID: <%= theme.id %> </p>
