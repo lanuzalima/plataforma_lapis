@@ -10,7 +10,12 @@ class ThemesController < ApplicationController
   end
 
   def new
-    @theme = Theme.new
+    if current_user.role == "Professor" || current_user.role == "Teacher"
+      @theme = Theme.new
+    else
+      # flash[:alert] = "Apenas professores podem cadastrar propostas"
+      redirect_to themes_path, alert: "Apenas professores podem cadastrar propostas"
+    end
   end
 
   def create
