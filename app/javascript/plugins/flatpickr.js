@@ -2,10 +2,10 @@ import flatpickr from "flatpickr";
 
 const calendar = () => {
   flatpickr(".datepicker", {
-    // mode: "range",
-    // minDate: "today",
     dateFormat: 'd/m/Y',
-    locale: {
+    locale: {    
+      // mode: "range",
+      // minDate: "today",
       firstDayOfWeek: 0,
       weekdays: {
         shorthand: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],

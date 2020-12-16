@@ -2,10 +2,16 @@ class ThemesController < ApplicationController
   before_action :set_theme, only: %i[show destroy update]
 
   def index
-    if current_user.role == "Professor" || current_user.role == "Teacher"
-      @themes = Theme.where(user_id: current_user.id)
+    if params[:query].present?
+      @themes = Theme.where(title: params[:query])
+      @theme = Theme.new
     else
-      @themes = Theme.all
+      if current_user.role == "Professor" || current_user.role == "Teacher"
+        @themes = Theme.where(user_id: current_user.id)
+        @theme = Theme.new
+      else
+        @themes = Theme.all
+      end
     end
   end
 
