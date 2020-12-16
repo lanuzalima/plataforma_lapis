@@ -1,19 +1,33 @@
+<nav aria-label="breadcrumb ">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item ml-5">
+      <a href="/">
+        <span class="sr-only">Página inicial</span>
+          <i class="icon fas fa-home"></i>
+        </a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="/themes"> Minhas propostas </a>
+      </li>
+            <li class="breadcrumb-item">
+        <a href="/user/id/texts"> Meus textos </a>
+      </li>
+    <li class="breadcrumb-item active" aria-current="page">Nova proposta de texto</li>
+  </ol>
+</nav>
 <div class="container mt-4">
-  <h1>Proposta de redação</h1>
-   <%= link_to "Minhas propostas", themes_path, class: "a btn btn-primary btn-sm my-2" %>
-   <%= link_to "Meus textos", user_texts_path, class: "a btn btn-primary btn-sm my-2" %>
-  <br>
-  <br>
-  <div class="card-theme col-lg-5 mx-2"> 
-    <div class="card-lecture-infos mx-2" >
-      <h2>Tema do texto:  <%= @theme.title.capitalize %> <h2>
-      <h5>Gênero textual: <%= @theme.genre %></h5>
-        <div class="row mx-auto d-flex justify-content-space-between">
-          <p>Data Inicial: <%= @theme.start_date.strftime("%d/%m/%Y") %></p>
-          &nbsp;&nbsp;
-          <p>Data final: <%= @theme.end_date.strftime("%d/%m/%Y") %> </p>        
-        </div>
      
+    <div class="col-xs-12 col-sm-6 col-sm-offset-6">
+      <div class="form-login">
+      <h2>Proposta de redação</h2>
+      <h4><strong>Tema do texto:  <%= @theme.title.capitalize %> </strong></h4>
+      <h5>Gênero textual: <%= @theme.genre %></h5>
+    <div class="row mx-auto d-flex justify-content-space-between my-2">
+      <p>Data Inicial: <%= @theme.start_date.strftime("%d/%m/%Y") %></p>
+       &nbsp;&nbsp;
+       <p>Data final: <%= @theme.end_date.strftime("%d/%m/%Y") %> </p>        
+    </div>
+
     <% if current_user.role == "Teacher" || current_user.role == "Professor"  %>
       <ul> 
       <% @theme.texts.each do |text|  %>
@@ -22,16 +36,23 @@
         <% end %>
       <% end %>
       </ul>
-       <%= link_to "Apagar proposta", theme_url(@theme), method: :delete, class: "a btn btn-light btn-sm mb-2" %>  
-       <%= link_to "Editar proposta", edit_theme_url(@theme), class: "a btn btn-info btn-sm mb-2" %>
+        <%= link_to "Apagar proposta", theme_url(@theme), method: :delete, class: "a btn btn-light btn-sm mb-2" %>  
+        <%= link_to "Editar proposta", edit_theme_url(@theme), class: "a btn btn-info btn-sm mb-2" %>
     <% else%> 
-       <div>
-        <%= link_to "Enviar texto", new_theme_text_url(@theme, @text), class: "a btn btn-info btn-sm" %> 
-        <%= link_to "Baixar proposta", @theme.photo, target: :_blank, class: "btn btn-info btn-sm" %>
-       </div>
+    <%= simple_form_for [@theme] do |f| %>
+        <%= f.error_notification %>
+          <div class="form-inputs">            
+            <%= f.input :photo, as: :file, label: "Inserir texto" %>
+            <br>
+          </div>
+          <br>
+          <div class="form-actions">
+        <%= link_to "Baixar proposta", @theme.photo, target: :_blank, class: "btn btn-light" %>
+            <%= f.button :submit, "Enviar Texto", class: "btn btn-primary"  %>
+          </div>
+        <% end %>   
+      
     <% end %>
     </div>
   </div>
-  
-    
 </div>
