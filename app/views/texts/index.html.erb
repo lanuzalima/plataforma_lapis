@@ -17,12 +17,32 @@
   <% if @texts.length == 0 %>
     <%= "Não há textos" %>
   <% else %>
-    <% @texts.each do |text| %>
-    
-      <%= text.theme.title %>
-      <%# FALTA COLOCAR A GRADE %>
-      <%# <%= text.theme.grade %>
-      <%= text.theme.end_date.strftime("%d/%m/%Y") %>
+    <table class="table table-striped">
+      <thead>
+          <tr>
+          <th scope="col">Gênero</th>
+          <th scope="col">Tema</th>
+          <th scope="col">Data de envio</th>
+          <th scope="col">Status</th>
+          <th scope="col">Nota</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @texts.each do |text|  %>
+            <tr>
+              <td><%= text.theme.genre %></td>
+              <td><%= text.theme.title %></td>
+              </td>
+              <td><%= text.created_at.strftime("%d/%m/%Y") %></td>
+              <td><%= text.annotations.present? ? ("<i class='far fa-check-circle' 'color: '></i>").html_safe : ("<i class='far fa-times-circle'></i>").html_safe %>
+              <td><%#= text.grade("%d/%m/%Y") %></td>
+              <td> <%#= link_to "Editar texto",  edit_theme_text_url(@theme, text), class: "a btn btn-info btn-sm mb-2" %> </td>
+            </tr>
+          <% end %>
+      </tbody>
+  </table>
     <% end %>
-  <% end %>
-<% end %>
+  <% end %> 
+</div>
+   
