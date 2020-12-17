@@ -38,7 +38,8 @@
 <% end %>
  
   <%= link_to "Propostas", themes_path, class: "a btn btn-info bt-sm my-2" %>
-  <%= link_to "Salvar", theme_path(@text.theme.id), class: "a btn btn-primary bt-sm my-2" %>
+  <%= link_to "Salvar", theme_path(@text.theme.id), 
+  data: { confirm: "Seu texto foi enviado!" }, class: "a btn btn-primary bt-sm my-2" %>
   <br>
   <br>
 

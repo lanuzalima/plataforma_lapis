@@ -25,7 +25,6 @@
   <br>
   <br>
   <div class="row justify-content-center">  
-
     <div class="card-theme col-lg-6"> 
       <div class="card-lecture-infos mx-2" >
         <h2> <%= @theme.genre.capitalize %>: "<%= @theme.title.capitalize %>"<h2>
@@ -35,7 +34,7 @@
           <p>Data final: <%= @theme.end_date.strftime("%d/%m/%Y") %> </p>        
         </div>      
         <% if current_user.role == "Teacher" || current_user.role == "Professor"  %>
-          <%= link_to "Apagar proposta", theme_url(@theme), method: :delete, class: "a btn btn-light btn-sm mb-2" %>  
+          <%= link_to "Apagar proposta", theme_url(@theme), method: :delete, data: { confirm: "Atenção! Deseja apagar sua proposta?" }, class: "a btn btn-light btn-sm mb-2" %>  
           <%= link_to "Editar proposta", edit_theme_url(@theme), class: "a btn btn-info btn-sm mb-2" %>
         <% else%> 
           <%= link_to "Baixar proposta", @theme.photo, target: :_blank, class: "btn btn-light btn-sm" %>
