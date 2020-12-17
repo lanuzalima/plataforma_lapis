@@ -31,19 +31,14 @@
   <p>Proposto por: <%= @text.theme.user.name %></p>
   
 
-<%= link_to "Propostas", themes_path, class: "a btn btn-info bt-sm my-2" %>
+
 <% if current_user.role != "Professor" %>
   <%= link_to "Apagar texto", theme_text_path, method: :delete, 
   data: { confirm: "Atenção! Deseja apagar seu texto?" }, class: "a btn btn-primary bt-sm my-2" %>
-  <%= link_to "Salvar", theme_path(@text.theme.id), 
-  data: { confirm: "Seu texto foi enviado!" }, class: "a btn btn-primary bt-sm my-2" %>
-<% else %>
-  <%= link_to "Salvar", theme_path(@text.theme.id), 
-  data: { confirm: "A correção foi enviada!" }, class: "a btn btn-primary bt-sm my-2" %>
 <% end %>
  
-  
-  <%# <%= link_to "Salvar", theme_path(@text.theme.id), 
+  <%= link_to "Propostas", themes_path, class: "a btn btn-info bt-sm my-2" %>
+  <%= link_to "Salvar", theme_path(@text.theme.id), 
   data: { confirm: "Seu texto foi enviado!" }, class: "a btn btn-primary bt-sm my-2" %>
   <br>
   <br>
