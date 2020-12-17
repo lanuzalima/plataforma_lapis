@@ -48,8 +48,8 @@
 .card-theme-inativo {
   overflow: hidden;
   height: 160px;
-  background: rgb(221, 221, 221);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background:#eeeeee;
+  border: 1px solid #dee2e6;
   display: flex;
   align-items: center;
   margin-bottom: 16px;
@@ -70,4 +70,13 @@
   opacity: .8;
   margin-bottom: 4px;
   margin-top: 4px;
+}
+
+.text-success {
+  font-weight: bold;
+  color:#128552 !important;
+}
+
+.text-danger {
+  font-weight: bold;
 }
