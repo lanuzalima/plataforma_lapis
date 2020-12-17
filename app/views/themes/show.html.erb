@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h1>Proposta de redação</h1>
+  <h1>Proposta de texto</h1>
     <%= link_to "Minhas propostas", themes_path, class: "a btn btn-primary btn-sm my-2" %>
     <% if current_user.role == "Estudante" || current_user.role == "Student"  %>
       <%= link_to "Meus textos", user_texts_path, class: "a btn btn-primary btn-sm my-2" %>
@@ -40,6 +40,7 @@
     <thead>
         <tr>
         <th scope="col">Estudante</th>
+        <th scope="col">Correção</th>
         <th scope="col">Nota</th>
       </tr>
     </thead>
@@ -48,20 +49,19 @@
         <%= link_to  theme_text_path(@theme,text) do %>
           <tr>
             
-            <td><%= text.user.name %></td>
+            <td>
+              <%= link_to  theme_text_path(@theme,text) do %>
+              <%= text.user.name %>
+              <% end %>
+            </td>
+            <td><%= text.annotations.present? ? ("<i class='far fa-check-circle' 'color: '></i>").html_safe : ("<i class='far fa-times-circle'></i>").html_safe %>
             <td><%#= text.user.grade %></td>
+            
           </tr>
         <% end %>
       <% end %>
     </tbody>
   </table>
-    <ul> 
-        <% @theme.texts.each do |text|  %>
-          <%= link_to  theme_text_path(@theme,text) do %>
-            <li> <%= text.user.name %></li>
-          <% end %>
-        <% end %>
-        </ul>
   </div>    
 </div>
 <% end %>
