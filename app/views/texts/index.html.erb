@@ -33,12 +33,12 @@
         <% @texts.each do |text|  %>
             <tr>
               <td><%= text.theme.genre.capitalize %></td>
-              <td><%= text.theme.title.capitalize %></td>
+              <td><%= link_to "#{text.theme.title.capitalize}", text_path %></td>
               </td>
               <td><%= text.created_at.strftime("%d/%m/%Y") %></td>
               <td class="text-center"><%= text.annotations.present? ? ("<i class='check far fa-check-circle' 'color: '></i>").html_safe : ("<i class='not-check far fa-times-circle'></i>").html_safe %>
-              <td><%#= text.grade("%d/%m/%Y") %></td>
-              <td> <%#= link_to "Editar texto",  edit_theme_text_url(@theme, text), class: "a btn btn-info btn-sm mb-2" %> </td>
+              <td><%= text.grade %></td>
+              <td> <%#= link_to ("<i class='check far fa-check-circle' 'color: '></i>").html_safe,  theme_text_url(@theme, text) %> </td>
             </tr>
           <% end %>
       </tbody>
