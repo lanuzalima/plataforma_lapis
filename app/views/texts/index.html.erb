@@ -16,34 +16,33 @@
   <% else %>
 
     <div class="row justify-content-center">  
-    <div class="col-9">
-    
-    <table class="table table-bordered table-hover">
-      <thead>
-          <tr>
-          <th scope="col">Gênero</th>
-          <th scope="col">Tema</th>
-          <th scope="col">Data de envio</th>
-          <th scope="col">Correção</th>
-          <th scope="col">Nota</th>
-          <th scope="col">Editar</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @texts.each do |text|  %>
-            <tr>
-              <td><%= text.theme.genre.capitalize %></td>
-              <td><%= text.theme.title.capitalize %></td>
-              </td>
-              <td><%= text.created_at.strftime("%d/%m/%Y") %></td>
-              <td class="text-center"><%= text.annotations.present? ? ("<i class='check far fa-check-circle' 'color: '></i>").html_safe : ("<i class='not-check far fa-times-circle'></i>").html_safe %>
-              <td><%#= text.grade("%d/%m/%Y") %></td>
-              <td> <%#= link_to "Editar texto",  edit_theme_text_url(@theme, text), class: "a btn btn-info btn-sm mb-2" %> </td>
+      <div class="col-9">
+      
+        <table class="table table-bordered table-hover">
+          <thead>
+              <tr>
+              <th scope="col">Gênero</th>
+              <th scope="col">Tema</th>
+              <th scope="col">Data de envio</th>
+              <th scope="col">Correção</th>
+              <th scope="col">Nota</th>
+              <th scope="col">Editar</th>
             </tr>
-          <% end %>
-      </tbody>
-  </table>
-    </div>
+          </thead>
+          <tbody>
+            <% @texts.each do |text|  %>
+                <tr>
+                  <td><%= text.theme.genre.capitalize %></td>
+                  <td><%= link_to "#{text.theme.title.capitalize}", theme_text_path(text.theme, text) %> </td>
+                  <td><%= text.created_at.strftime("%d/%m/%Y") %></td>
+                  <td class="text-center"><%= text.annotations.present? ? ("<i class='check far fa-check-circle' 'color: '></i>").html_safe : ("<i class='not-check far fa-times-circle'></i>").html_safe %>
+                  <td><%= text.grade %></td>
+                  <td><%= link_to ("<i class='far fa-trash-alt' ></i>").html_safe, theme_text_path(text.theme, text), method: :delete, data: { confirm: "Atenção! Deseja apagar sua proposta?" } %></td>
+                </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
     <% end %>
   <% end %> 
