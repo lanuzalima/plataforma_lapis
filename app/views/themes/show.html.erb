@@ -35,7 +35,8 @@
           </div>
       
       <% if current_user.role == "Teacher" || current_user.role == "Professor"  %>
-        <%= link_to "Apagar proposta", theme_url(@theme), method: :delete, class: "a btn btn-light btn-sm mb-2" %>  
+        <%= link_to "Apagar proposta", theme_url(@theme), method: :delete,
+        data: { confirm: "Atenção! Deseja apagar sua proposta?" }, class: "a btn btn-light btn-sm mb-2" %>  
         <%= link_to "Editar proposta", edit_theme_url(@theme), class: "a btn btn-info btn-sm mb-2" %>
       <% else%> 
         <div>
