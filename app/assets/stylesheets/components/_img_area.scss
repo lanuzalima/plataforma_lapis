@@ -2,18 +2,17 @@
   justify-content: center;
   position: relative;
   background-color: transparent;
-  // display: flex;
-  text-align: center;
-  min-width: 300px;
-  overflow:visible;
+  display: flex;
+  
   // max-height: 700px;
 
-  // #img-holder {
-  //   max-height: 700px;
-  // }
+  #img-holder {
+    overflow: scroll;
+  }
   img {
     box-shadow: 2px 2px 5px 2px rgba(139, 139, 139, 0.425);
-    max-height: 100vh;
+    max-height: 100vw;
+
   }
 }
 
