@@ -15,12 +15,18 @@
           <%= link_to "Página Inicial", "/", class: "nav-link" %>
         </li>
         <div class="nav-item">
-          <%= link_to "Minhas propostas", "/themes", class: "nav-link" %>
+          <%= link_to "Propostas", "/themes", class: "nav-link" %>
         </div>
         <div class="nav-item">
-          <a href="/themes/new" class="btn btn-primary mx-3">
-            <i class="fa fa-plus" aria-hidden="true"></i>  Novo tema
-          </a>        
+          <% if  current_user.role == "Professor" %>
+            <a href="/themes/new" class="btn btn-primary mx-3">
+              <i class="fa fa-plus" aria-hidden="true"></i>  Novo tema
+            </a>
+          <% else %>
+            <a href="/user/:id/texts" class="btn btn-primary mx-3">
+                Meus textos
+            </a>
+          <% end %>
         </div>
         <li class="nav-item dropdown">
           <% if current_user %>
