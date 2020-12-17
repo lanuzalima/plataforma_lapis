@@ -2,7 +2,7 @@
   <h1>Proposta de redação</h1>
     <%= link_to "Minhas propostas", themes_path, class: "a btn btn-primary btn-sm my-2" %>
     <% if current_user.role == "Estudante" || current_user.role == "Student"  %>
-      <%= link _to "Meus textos", user_texts_path, class: "a btn btn-primary btn-sm my-2" %>
+      <%= link_to "Meus textos", user_texts_path, class: "a btn btn-primary btn-sm my-2" %>
     <% end %>
   <div class="container mt-4 shadow-sm p-3 mb-5 bg-white rounded">
     <br>
@@ -35,35 +35,26 @@
       </div>
     </div>
     
-
-<table class="table table-striped">
-  <thead>
-      <tr>
-      <th scope="col">Estudante</th>
-      <th scope="col">Nota</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @theme.texts.each do |text|  %>
-      <%= link_to  theme_text_path(@theme,text) do %>
+ <% if current_user.role == "Teacher" || current_user.role == "Professor"  %>
+  <table class="table table-striped">
+    <thead>
         <tr>
-          
-          <td><%= text.user.name %></td>
-          <td><%#= text.user.grade %></td>
-        </tr>
+        <th scope="col">Estudante</th>
+        <th scope="col">Nota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @theme.texts.each do |text|  %>
+        <%= link_to  theme_text_path(@theme,text) do %>
+          <tr>
+            
+            <td><%= text.user.name %></td>
+            <td><%#= text.user.grade %></td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
-
-
-
-
-
-
-
-
-
+    </tbody>
+  </table>
     <ul> 
         <% @theme.texts.each do |text|  %>
           <%= link_to  theme_text_path(@theme,text) do %>
@@ -73,3 +64,13 @@
         </ul>
   </div>    
 </div>
+<% end %>
+
+
+
+
+
+
+
+
+
