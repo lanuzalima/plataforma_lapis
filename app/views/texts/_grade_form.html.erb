@@ -1,38 +1,14 @@
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Aguardando confirmação para: <%= resource.unconfirmed_email %></p>
-    <% end
-  <%= f.input :name, label: "Nome",
-        required: true,
-        autofocus: true %>
-  <%= f.input :email,
-              required: true,
-              input_html: { autocomplete: "email" }%>
-  <%= f.input :cpf,
-              required: true,
-              input_html: { autocomplete: "cpf" }%>
-  <%= f.radio_button :role,
-              'Teacher',
-              required: false %> Professor            
-  <%= f.radio_button :role,
-              'Student',
-              required: false %> Estudante      
-  <%= f.input :password,
-              hint: "Deixe em branco se não deseja alterar",
-              required: false,
-              input_html: { autocomplete: "password" } %>
-  <%= f.input :password_confirmation,
-              required: false,
-              input_html: { autocomplete: "password" } %>
-  <%= f.input :current_password,
-              hint: "Precisamos de sua senha atual para confirmar as alterações",
-              required: true,
-              input_html: { autocomplete: "senha-atual" } %>
-  </d
-  <div class="form-actions">
-    <%= f.button :submit, "Atualizar", class: "btn btn-info btn-lg" %>
-  </div>
-  <% end %>
+ 
+        <%= simple_form_for [@text.theme, @text] do |f| %>
+        <%= f.error_notification %>
+          <div class="form-inputs">
+            
+            <%= f.input :grade, label: "Inserir nota" %>
+            <br>
+          </div>
+          <br>
+          <div class="form-actions">
+            <%= f.button :submit, "Salvar nota", class: "btn btn-primary btn-md"  %>
+          </div>
+        <% end %>   
+       
