@@ -23,7 +23,7 @@
         <%= simple_form_for [@theme, @text] do |f| %>
         <%= f.error_notification %>
           <div class="form-inputs">
-            
+            <%= f.input :theme_id, as: :hidden, label: false %>
             <%= f.input :photo, as: :file, label: "Inserir texto" %>
             <br>
           </div>
