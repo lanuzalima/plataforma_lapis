@@ -12,6 +12,7 @@
         <button name="button" type="submit" class="btn btn-light">
           <i class="fas fa-search"></i>
         </button>
+<!-- Button trigger modal -->
       <a href="/themes/new" class="btn btn-primary mx-2" data-toggle="modal" data-target="#exampleModalCenter">
         <i class="fa fa-plus" aria-hidden="true"></i>  Novo tema
       </a>  
@@ -35,7 +36,6 @@
       </div>
     </form>
   <% end%>
-<!-- Button trigger modal -->
 
 <!-- fim modal -->
 
@@ -44,7 +44,7 @@
   <br>
   <div class="row">
     <%@themes.each do |theme| %>
-      <% if theme.end_date >= Time.now %>
+      <% if theme.end_date >= Date.today %>
         <div class="card-theme col-lg-5 mx-2"> 
           <div class="card-lecture-infos mx-2" >
             <p>ID: <%= theme.id %> </p>
@@ -70,7 +70,7 @@
 
 <div class="row">
     <%@themes.each do |theme| %>
-      <% if theme.end_date < Time.now %>
+      <% if theme.end_date < Date.today %>
         <div class="card-theme-inativo col-lg-5 mx-2"> 
           <div class="card-lecture-infos-inativo mx-2" >
             <p>ID: <%= theme.id %> </p>
