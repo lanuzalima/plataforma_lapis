@@ -1,13 +1,12 @@
 class TextsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[new create show]
-  before_action :set_text, only: %i[show destroy]
+  before_action :set_text, only: %i[show destroy update]
 
   def index
     @texts = Text.where(user_id: current_user.id)
   end
 
   def show
-    # authorize @text
     @themes = Theme.all
     @text_id = mask(@text.id)
     @owner_id = mask(@text.user.id)
@@ -47,6 +46,15 @@ class TextsController < ApplicationController
       @text.destroy
       redirect_to themes_path
     end
+  end
+
+  def edit
+  end
+
+  def update
+    @text.update(text_params)
+    redirect_to theme_text_path(@text),
+                alert: "Nota adicionada"
   end
 
   private
