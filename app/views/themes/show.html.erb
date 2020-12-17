@@ -60,7 +60,7 @@
                     <% end %>
                   </td>
                   <td class="text-center correction"><%= text.annotations.present? ? ("<i class='far fa-check-circle' ></i>").html_safe : ("<i class='far fa-times-circle'></i>").html_safe %>
-                  <td><%#= text.user.grade %></td>
+                  <td><%= text.grade %></td>
                 </tr>
               <% end %>
             <% end %>

@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
   validates :cpf, presence: true, uniqueness: true
+  validates :role, presence: true
 
   has_one_attached :photo
 end
