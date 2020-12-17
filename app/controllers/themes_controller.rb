@@ -40,7 +40,7 @@ class ThemesController < ApplicationController
   def update
     @theme.update(theme_params)
     redirect_to theme_path(@theme),
-                notice: "Sua proposta foi editada"
+                alert: "Sua proposta foi editada"
   end
 
   def destroy

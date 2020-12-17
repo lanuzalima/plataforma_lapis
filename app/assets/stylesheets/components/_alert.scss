@@ -1,6 +1,8 @@
 .alert {
-  position: sticky;
-  bottom: 16px;
-  right: 16px;
+  position:relative;
+  top: 10px;
+  margin: 0 auto !important;
   z-index: 1000;
+  width: 25%;
+  text-align: center;
 }

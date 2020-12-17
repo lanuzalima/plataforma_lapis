@@ -1,8 +1,5 @@
-<h1>Todos os textos recebidos </h1>
-
-
 <div class="container mt-4">
-<h1></h1>
+<h1 class="text-center mb-4">Todos os textos </h1>
 <% if current_user.role == "Professor" %>
   <%= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
   <br>
@@ -17,13 +14,17 @@
   <% if @texts.length == 0 %>
     <%= "Não há textos" %>
   <% else %>
-    <table class="table table-striped">
+
+    <div class="row justify-content-center">  
+    <div class="col-9">
+    
+    <table class="table table-bordered table-hover">
       <thead>
           <tr>
           <th scope="col">Gênero</th>
           <th scope="col">Tema</th>
           <th scope="col">Data de envio</th>
-          <th scope="col">Status</th>
+          <th scope="col">Correção</th>
           <th scope="col">Nota</th>
           <th scope="col">Editar</th>
         </tr>
@@ -31,17 +32,19 @@
       <tbody>
         <% @texts.each do |text|  %>
             <tr>
-              <td><%= text.theme.genre %></td>
-              <td><%= text.theme.title %></td>
+              <td><%= text.theme.genre.capitalize %></td>
+              <td><%= text.theme.title.capitalize %></td>
               </td>
               <td><%= text.created_at.strftime("%d/%m/%Y") %></td>
-              <td><%= text.annotations.present? ? ("<i class='far fa-check-circle' 'color: '></i>").html_safe : ("<i class='far fa-times-circle'></i>").html_safe %>
+              <td class="text-center"><%= text.annotations.present? ? ("<i class='check far fa-check-circle' 'color: '></i>").html_safe : ("<i class='not-check far fa-times-circle'></i>").html_safe %>
               <td><%#= text.grade("%d/%m/%Y") %></td>
               <td> <%#= link_to "Editar texto",  edit_theme_text_url(@theme, text), class: "a btn btn-info btn-sm mb-2" %> </td>
             </tr>
           <% end %>
       </tbody>
   </table>
+    </div>
+    </div>
     <% end %>
   <% end %> 
 </div>
