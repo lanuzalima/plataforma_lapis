@@ -1,52 +1,77 @@
-<div class="container col-6 justify-content-center">
+<nav aria-label="breadcrumb ">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item ml-5">
+      <a href="/">
+        <span class="sr-only">Página inicial</span>
+          <i class="icon fas fa-home"></i>
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="/themes"> Minhas propostas </a>
+    </li>
+    <% if current_user.role == "Estudante" || current_user.role == "Student" %> 
+      <li class="breadcrumb-item">
+        <a href="/user/id/texts"> Meus textos </a>
+      </li>
+    <% end %>
+    <li class="breadcrumb-item active" aria-current="page">Nova proposta de texto</li>
+  </ol>
+</nav>
+
+<div class="container">
 
   <div id="comment_pop_box"></div>
   <user data-name="<%= current_user.name %>" data-user-id="<%= @owner_id %>" data-role="<%=  current_user.role %>"></user>
 
-  <% if @annotations %>
-    <annots class="my_annots" data-text-id="<%= @text_id %>">
-      <% @annotations.each do |key, value| %>
-        <annot class="annot" style="display:none"
-             data-original-id="<%=value[:original_id]%>" 
-             data-user-id="<%=value[:user_id]%>"
-             data-content="<%=value[:content]%>">
-        </annot>
+  <div class="row justify-content-center">  
+    <div class="card-text card-theme col-lg-8"> 
+      <div class="card-theme-infos" >
+        <% if current_user == @text.user %>
+          <h6>Seu texto para o tema:</h6>
+        <% else %>
+          <h6>Texto de <%= @text.user.name  %> para o tema:</h6>
+        <% end %>
+
+        <h1><%= @text.theme.genre.capitalize %>: <%= @text.theme.title.capitalize %></h1>
+        <p>Tema proposto por: <%= @text.theme.user.name %></p>
+        <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
+          <%= render  "grade_form" %>
+        <% end %>
+        <% if current_user.role == "Estudante" || current_user.role == "Student" %>
+        <h6>Sua nota: <%=  %></h6>
+        <% end %>
+
+
+        <% if @annotations %>
+          <annots class="my_annots" data-text-id="<%= @text_id %>">
+            <% @annotations.each do |key, value| %>
+              <annot class="annot" style="display:none"
+                  data-original-id="<%=value[:original_id]%>" 
+                  data-user-id="<%=value[:user_id]%>"
+                  data-content="<%=value[:content]%>">
+              </annot>
+            <% end %>
+          </annots>
+        <% else %>
+          <p class="text-danger" id="no_annots">Ainda não há anotações para este documento</p>
+        <% end %>
+
+      <% if current_user.role != "Professor" %>
+        <%= link_to "Apagar texto", theme_text_path, method: :delete, 
+        data: { confirm: "Atenção! Deseja apagar seu texto?" }, class: "btn btn-outline-danger mt-2" %>
+      <% else %>
+        <%= link_to "Salvar Correção", theme_path(@text.theme.id), data: { confirm: "Seu texto foi enviado!" }, class: "btn btn-primary px-5" %>
       <% end %>
-    </annots>
-  <% else %>
-    <p id="no_annots">Não há anotações para este documento</p>
-  <% end %>
 
-  
-  <% if current_user == @text.user %>
-    <h6>Seu texto para o tema:</h6>
-  <% else %>
-    <h6>Texto de <%= @text.user.name  %> para o tema:</h6>
-  <% end %>
+        <br>
+      </div>
+    </div>
+  </div>
+<div class="row">
 
 
-
-  <h1><%= @text.theme.title %></h1>
-  <p>Gênero: <%= @text.theme.genre %></p>
-  <p>Proposto por: <%= @text.theme.user.name %></p>
-  
-
-
-<% if current_user.role != "Professor" %>
-  <%= link_to "Apagar texto", theme_text_path, method: :delete, 
-  data: { confirm: "Atenção! Deseja apagar seu texto?" }, class: "a btn btn-primary bt-sm my-2" %>
-<% end %>
- 
-  <%= link_to "Propostas", themes_path, class: "a btn btn-info bt-sm my-2" %>
-  <%= link_to "Salvar", theme_path(@text.theme.id), data: { confirm: "Seu texto foi enviado!" }, class: "a btn btn-primary bt-sm my-2" %>
- 
- <% if current_user.role = "Professor" %>
-   <%= render  "grade_form" %>
- <% end %>
-  <br>
-  <br>
-
-  <div class="editor_area">
+  <div class="col-lg-8">
+  <div class="editor_area mt-3">
       <div class="tools">
         <div class="row">
           <h6>Ferramentas</h6>
@@ -63,10 +88,10 @@
       </div>
     <div class="text-image" >
       <% if @text.photo.present? %>
-         <div id="img-holder">
+        <div id="img-holder">
           <%= cl_image_tag(@text.photo.key, :transformation=>[
             {:if=>"w_gt_h", :angle=>'90' }], id: "annotable", alt: "Redacao", data: {text_id: "#{@text_id}"}) %>
-         </div>
+        </div>
       <% else %>
         <div>
           <%= image_tag "https://viacarreira.com/wp-content/uploads/2015/12/  espelho-da-redacao-enem-2018-o-que-e-como-consultar.jpg", alt: "Redacao", width: 800, id:   "annotable", data: {text_id: "#{@text_id}"}%>
@@ -76,8 +101,11 @@
       </div>
     </div>
   </div>
+  
+  </div>
 
-
+  <div class="col-lg-4">
+  
   <% if @annotations %>
     <div class="coments" data-text-id="<%= @text_id %>">
       <h4>Comentários</h4>
@@ -89,6 +117,11 @@
       <% end %>
     </div>
   <% end %>
+  </div>
+</div>
+
+
+
 
 <!-- 
   <%= link_to 'Voltar', :back %>
