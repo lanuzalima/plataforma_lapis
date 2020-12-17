@@ -1,20 +1,30 @@
+<nav aria-label="breadcrumb ">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item ml-5">
+      <a href="/">
+        <span class="sr-only">Página inicial</span>
+          <i class="icon fas fa-home"></i>
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="/themes"> Propostas de Redação </a>
+    </li>
+    <% if current_user.role == "Estudante" || current_user.role == "Student" %> 
+      <li class="breadcrumb-item">
+        <a href="themes/:id"> Meus textos </a>
+      </li>
+    <% end %>
+    <li class="breadcrumb-item active" aria-current="page">Enviar texto</li>
+  </ol>
+</nav>
 
 <div class="container mt-4">
-  <h1>Meu novo texto</h1>
-
-<%= link_to "Propostas", themes_path, class: "btn btn-primary" %>
-<br>
-<br>
-    <%#= link_to "Voltar para home", root_path, class: "a btn btn-light bt-sm my-2" %>
+  <h1 class="text-center">Meu novo texto</h1>
   <br>
-  <br>
-  <div class="row">
-    
-    
-
-    <div class="card-text col-lg-5 mx-2"> 
+  <div class="row justify-content-center">
+    <div class="card-text col-lg-7 mx-2"> 
       <div class="card-text-infos mx-2" >
-        <h2><%= @theme.genre.capitalize %>: "<%= @theme.title%>"</h2>
+        <h2><%= @theme.genre.capitalize %>: "<%= @theme.title.capitalize%>"</h2>
         <div class="row mx-auto d-flex justify-content-space-between">
           <p>Data Inicial: <%= @theme.start_date.strftime("%d/%m/%Y") %></p>
           &nbsp;&nbsp;
@@ -22,14 +32,18 @@
         </div>
         <%= simple_form_for [@theme, @text] do |f| %>
         <%= f.error_notification %>
-          <div class="form-inputs">
-            <%= f.input :theme_id, as: :hidden, label: false %>
-            <%= f.input :photo, as: :file, label: "Inserir texto" %>
-            <br>
+          <div class="form-inputs">            
+            <%= f.input :photo, as: :file, placeholder: "Foto", label: "Inserir texto" %>
+        <!--Botão especial com ícone
+            <label  class="btn btn-outline-primary"> Inserir Redação  <i class="fas fa-camera"></i>
+              <span style="display:none;">
+                <%= f.file_field :image, required: true, multiple: true, name: 'picture' %>
+              </span>
+            </label> 
+        -->
           </div>
-          <br>
           <div class="form-actions">
-            <%= f.button :submit, "Enviar Texto", class: "btn btn-primary btn-md"  %>
+            <%= f.button :submit, "Enviar Texto", class: "btn btn-primary px-4"  %>
           </div>
         <% end %>   
         </div>

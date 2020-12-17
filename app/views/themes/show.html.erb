@@ -19,10 +19,7 @@
 </nav>
 <div class="container mt-4">
   <h1 class="text-center">Proposta de redação</h1>
-    <% if current_user.role == "Estudante" || current_user.role == "Student" %>
-    <%= link_to "Meus textos", user_texts_path, class: "a btn btn-primary btn-sm my-2" %>
-   <% end %>
-  <br>
+
   <br>
   <div class="row justify-content-center">  
     <div class="card-theme col-lg-6"> 

@@ -1,3 +1,17 @@
+<nav aria-label="breadcrumb ">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item ml-5">
+      <a href="/">
+        <span class="sr-only">Página inicial</span>
+          <i class="icon fas fa-home"></i>
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="/themes"> Minhas propostas </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Meus textos</li>
+  </ol>
+</nav>
 <div class="container mt-4">
 <h1 class="text-center mb-4">Todos os textos </h1>
 <% if current_user.role == "Professor" %>
