@@ -1,5 +1,5 @@
 class ThemesController < ApplicationController
-  before_action :set_theme, only: %i[show destroy update]
+  before_action :set_theme, only: %i[show destroy update edit]
 
   def index
     if current_user.role == "Professor" || current_user.role == "Teacher"
@@ -35,7 +35,6 @@ class ThemesController < ApplicationController
   end
 
   def edit
-    @theme = Theme.find(params[:id])
   end
 
   def update
