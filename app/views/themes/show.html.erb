@@ -8,8 +8,14 @@
   <br>
   <div class="card-theme col-lg-5 mx-2"> 
     <div class="card-lecture-infos mx-2" >
+
+    <h2> <%= @theme.genre %>: "<%= @theme.title.capitalize %>"<h2>
+      
+    <!--
+    
       <h2>Tema do texto:  <%= @theme.title.capitalize %> <h2>
       <h5>Gênero textual: <%= @theme.genre %></h5>
+    -->
         <div class="row mx-auto d-flex justify-content-space-between">
           <p>Data Inicial: <%= @theme.start_date.strftime("%d/%m/%Y") %></p>
           &nbsp;&nbsp;
