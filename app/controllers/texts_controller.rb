@@ -8,6 +8,7 @@ class TextsController < ApplicationController
 
   def show
     # authorize @text
+    @themes = Theme.all
     @text_id = mask(@text.id)
     @owner_id = mask(@text.user.id)
     text_annotations = Annotation.where(text_id: @text.id)
