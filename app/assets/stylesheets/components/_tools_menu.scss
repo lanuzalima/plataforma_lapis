@@ -6,7 +6,7 @@
   margin-left: 30px;
   margin-bottom: 0px;
   margin-top: 30px;
-  max-width: 10vw;
+  width: 180px;
   background-color: #046ae7fa;
   padding: 10px 10px;
   border-radius: 3px;
@@ -65,4 +65,95 @@
   text-align: center;
   margin: 10px 0px;
   display: none;
+}
+
+.grading {
+  position: sticky;
+  display: flex;
+  z-index: 10000;
+  top: 120px;
+  height: 100px;
+  margin-right: -200px;
+  margin-left: 20px;
+  margin-bottom: 0px;
+  margin-top: 120px;
+  width: 184px;
+  background-color: #ffc55af8;
+  padding: 12px 12px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px 2px rgba(97, 97, 97, 0.048);
+
+  // .form-control{
+  //   width: 100px;
+  // }
+
+  label {
+    color: rgba(0, 0, 0, 0.507);
+    padding: 3px;
+    margin: 0px 5px 5px 5px;
+    text-align: center;
+  }
+}
+
+.grade_btn {
+  // margin-left: 120px;
+  // margin-top: -95px;
+  width: 35px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.205);
+  font-weight: 500;
+  font-size: large;
+  height: 35px;
+  padding: 2px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+  align-self: center;
+  text-decoration: none;
+  transition: 0.6s;
+  background-color: #fa8c4c73;
+
+  i {
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+.grade_btn:hover {
+  color: white;
+  background-color: #fa8c4c;
+}
+
+.student {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  z-index: 10000;
+  top: 120px;
+  height: 50px;
+  margin-right: -200px;
+  margin-left: 20px;
+  margin-bottom: 0px;
+  margin-top: 120px;
+  width: 184px;
+  background-color: #ffc55af8;
+  padding: 12px 12px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px 2px rgba(97, 97, 97, 0.048);
+  align-items: center;
+
+  // .form-control{
+  //   width: 100px;
+  // }
+
+  h6 {
+    color: #a3420973;
+    padding: 3px;
+    margin: 0px 5px 5px 5px;
+    font-size: x-large;
+    font-weight: bold;
+  }
 }
