@@ -1,4 +1,4 @@
-  <div class="image-marking-cointainer">
+<div class="container col-12 d-flex">
     
     <% if @annotations %>
       <annots class="my_annots" data-text-id="<%= @text_id %>">
@@ -37,6 +37,9 @@
         </div>
       </div>
     </div>
+  
+  <div class="image-marking-cointainer">
+    
  
   <div class="text-image" >
     <% if @text.photo.present? %>
@@ -77,9 +80,16 @@
       <h6>Texto de <%= @text.user.name  %> para o tema:</h6>
     <% end %>
 
-    <h1><%= @text.theme.title %></h1>
-    <p>Gênero: <%= @text.theme.genre %></p>
-    <p>Proposto por: <%= @text.theme.user.name %></p>
+    <div class="grade">
+      <h1><%= @text.theme.genre.capitalize %>: <%= @text.theme.title.capitalize %></h1>
+      <p>Tema proposto por: <%= @text.theme.user.name %></p>
+      <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
+        <%= render  "grade_form" %>
+      <% end %>
+      <% if current_user.role == "Estudante" || current_user.role == "Student" %>
+      <h6>Sua nota: <%= @text.grade %></h6>
+      <% end %>
+    </div>
   
     <% if current_user.role != "Professor" %>
       <%= link_to "Apagar texto", theme_text_path, method: :delete, 
@@ -100,16 +110,6 @@
       </div>
     <% end %>
 
-    <div class="grade">
-      <h1><%= @text.theme.genre.capitalize %>: <%= @text.theme.title.capitalize %></h1>
-      <p>Tema proposto por: <%= @text.theme.user.name %></p>
-      <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
-        <%= render  "grade_form" %>
-      <% end %>
-      <% if current_user.role == "Estudante" || current_user.role == "Student" %>
-      <h6>Sua nota: <%= @text.grade %></h6>
-      <% end %>
-    </div>
       
 
     <%= link_to 'Voltar', :back %>
@@ -119,6 +119,7 @@
 
 </div>
 
+</div>
 
 
 
