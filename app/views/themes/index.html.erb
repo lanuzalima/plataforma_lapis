@@ -58,12 +58,8 @@
       <% if theme.end_date >= Date.today %>
         <div class="card-theme col-lg-5 mx-2"> 
           <div class="card-lecture-infos mx-2" >
-            <p>ID: <%= theme.id %> </p>
+            <p>Professor(a): <%= theme.user.name.capitalize %> </p>
             <h2><%= theme.genre.capitalize %>: "<%= link_to"#{theme.title.capitalize}", theme_path(theme) %>"</h2>
-<!--
-            <h2>Título: <%= link_to"#{theme.title.capitalize}", theme_path(theme) %></h2>
-            <h5>Gênero textual: <%= theme.genre.capitalize %></h5>
--->
             <div class="row mx-auto d-flex justify-content-space-between">
               <p>Data Inicial: <%= theme.start_date.strftime("%d/%m/%Y") %></p>
               &nbsp;&nbsp;
