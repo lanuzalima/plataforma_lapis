@@ -1,13 +1,15 @@
 <%= simple_form_for [@text.theme, @text] do |f| %>
   <%= f.error_notification %>
-  <div class="row mx-1">
-  <div class="form-inputs my-2 h6">
-    <%= f.input :grade, label: "Inserir nota" %>
+  <div class="row d-flex justify-content-center">
+    <%= f.label "Definir nota", class:"grade_label" %>
   </div>
-  <div class="form-actions">
-    <%= f.button :submit, "✚", class: "btn-texts btn btn-primary"%>
+  <div class="row d-flex">
+    <div class="col-9 mr-n3">
+      <%= f.input :grade, max: 1000, min: 0, label: false %>
+    </div>
+    <div class="col-2">
+      <%= f.button :submit, "☑", class: "grade_btn" do %><div>a</div> <% end %>
+    </div>
   </div>
-  
 
-  </div>
 <% end %>

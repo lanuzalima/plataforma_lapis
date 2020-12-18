@@ -6,3 +6,29 @@
 @import "tools_menu";
 @import "img_area";
 @import "card_text";
+
+.text_info {
+  width: 25vw;
+  min-width: 20vw;
+  bottom: 30px;
+  padding: 30px 30px 30px 30px;
+  margin: 0px;
+
+  p {
+    font-size: small;
+    margin: 0px;
+  }
+}
+
+.image-marking-cointainer {
+  width:  75vw;
+  max-width: 75vw;
+  position: relative;
+  display: block;
+  margin: 0px;
+  margin-left: -20px;
+}
+
+.blue_gray {
+  background-color: #E9ECEF;
+}

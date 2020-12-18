@@ -18,119 +18,110 @@
   </ol>
 </nav>
 
-<div class="container">
+<div class="container col-12 d-flex mt-n3 pt-3 blue_gray">
+    
+  <user data-name="<%= current_user.name %>" data-user-id="<%= @owner_id %>" data-role="<%=   current_user.role %>"></user>
 
-  <div id="comment_pop_box"></div>
-  <user data-name="<%= current_user.name %>" data-user-id="<%= @owner_id %>" data-role="<%=  current_user.role %>"></user>
-
-  <div class="row justify-content-center">  
-    <div class="card-text card-theme col-lg-8"> 
-      <div class="card-theme-infos" >
-        <% if current_user == @text.user %>
-          <h6>Seu texto para o tema:</h6>
-        <% else %>
-          <h6>Texto de <%= @text.user.name  %> para o tema:</h6>
-        <% end %>
-
-        <h1><%= @text.theme.genre.capitalize %>: <%= @text.theme.title.capitalize %></h1>
-        <p>Tema proposto por: <%= @text.theme.user.name %></p>
-        <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
-          <%= render  "grade_form" %>
-        <% end %>
-        <% if current_user.role == "Estudante" || current_user.role == "Student" %>
-        <h6>Sua nota: <%=  %></h6>
-        <% end %>
-
-
-        <% if @annotations %>
-          <annots class="my_annots" data-text-id="<%= @text_id %>">
-            <% @annotations.each do |key, value| %>
-              <annot class="annot" style="display:none"
-                  data-original-id="<%=value[:original_id]%>" 
-                  data-user-id="<%=value[:user_id]%>"
-                  data-content="<%=value[:content]%>">
-              </annot>
-            <% end %>
-          </annots>
-        <% else %>
-          <p class="text-danger" id="no_annots">Ainda não há anotações para este documento</p>
-        <% end %>
-
-      <% if current_user.role != "Professor" %>
-        <%= link_to "Apagar texto", theme_text_path, method: :delete, 
-        data: { confirm: "Atenção! Deseja apagar seu texto?" }, class: "btn btn-outline-danger mt-2" %>
-      <% else %>
-        <%= link_to "Salvar Correção", theme_path(@text.theme.id), data: { confirm: "Seu texto foi enviado!" }, class: "btn btn-primary px-5" %>
+  <% if @annotations %>
+    <annots class="my_annots" data-text-id="<%= @text_id %>">
+      <% @annotations.each do |key, value| %>
+        <annot class="annot" style="display:none"
+             data-original-id="<%=value[:original_id]%>" 
+             data-user-id="<%=value[:user_id]%>"
+             data-content="<%=value[:content]%>">
+        </annot>
       <% end %>
+    </annots>
+  <% else %>
+    <p id="no_annots">Não há anotações para este documento</p>
+  <% end %>
+  
+  <div id="comment_pop_box"></div>
 
-        <br>
+  <div class="editor_area">
+    <div class="tools">
+      <div class="row d-block">
+        <h6>Ferramentas</h6>
+      </div>
+      <div class="row d-block">
+        <div class="tool_name">Desenhar retângulo</div>
+        <div class="tool_name">Desenhar polígono</div>
+        <div class="tool_name">Ampliar zoom</div>
+        <div class="tool_name">Diminuir zoom</div>
+        <div class="tool_name">Resetar zoom</div>
+      </div>
+      <div class="row d-flex justify-content-around ml-1 mr-1">
+        <% if current_user.role == 'Teacher' || current_user.role == 'Professor' %>
+          <a href="" class="tools_btn" id="tools_rect" title="Desenhar retângulo"><i class="fas fa-vector-square"></i></a>
+          <a href="" class="tools_btn" id="tools_polygon" title="Desenhar polígono"><i class="fas fa-draw-polygon"></i></a>
+        <% end %>
+        <a href="" class="tools_btn" id="tools_zoom_in" title="Aumentar zoom"><i class="fas fa-plus"></i></a>
+        <a href="" class="tools_btn" id="tools_zoom_out" title="Diminuir zoom"><i class="fas fa-minus"></i></a>
+        <a href="" class="tools_btn" id="tools_zoom_reset" title="Resetar zoom"><i class="fas fa-arrows-alt"></i></a>
       </div>
     </div>
   </div>
-<div class="row">
+  
+  <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
+    <div class="grading">
+        <%= render  "grade_form" %>
+    </div>
+  <% else %>
+    <div class="grading student">
+      <span>Sua nota:</span><h6> <%= @text.grade %></h6>
+    </div>
+  <% end %>
 
-
-  <div class="col-lg-8">
-  <div class="editor_area mt-3">
-      <div class="tools">
-        <div class="row">
-          <h6>Ferramentas</h6>
-        </div>
-        <div>
-        <% if current_user.role == 'Teacher' || current_user.role == 'Professor' %>
-          <a href="" class="btn btn-success" id="tools_rect" title="Ferramenta desenhar retângulo"><i class="fas fa-vector-square"></i></a>
-          <a href="" class="btn btn-success" id="tools_polygon" title="Ferramenta desenhar polígono"><i class="fas fa-draw-polygon"></i></a>
-        <% end %>
-          <a href="" class="btn btn-success" id="tools_zoom_in" title="Aumentar zoom"><i class="fas fa-plus"></i></a>
-          <a href="" class="btn btn-success" id="tools_zoom_out" title="Diminuir zoom"><i class="fas fa-minus"></i></a>
-          <a href="" class="btn btn-success" id="tools_zoom_reset" title="Resetar zoom"><i class="fas fa-arrows-alt"></i></a>
-        </div>
-      </div>
+  <div class="image-marking-cointainer">
     <div class="text-image" >
       <% if @text.photo.present? %>
         <div id="img-holder">
           <%= cl_image_tag(@text.photo.key, :transformation=>[
-            {:if=>"w_gt_h", :angle=>'90' }], id: "annotable", alt: "Redacao", data: {text_id: "#{@text_id}"}) %>
+              {:if=>"w_gt_h", :angle=>'90' }], id: "annotable", alt: "Redacao", data: {text_id: "#{@text_id}"}) %>
         </div>
       <% else %>
         <div>
-          <%= image_tag "https://viacarreira.com/wp-content/uploads/2015/12/  espelho-da-redacao-enem-2018-o-que-e-como-consultar.jpg", alt: "Redacao", width: 800, id:   "annotable", data: {text_id: "#{@text_id}"}%>
+          <p>Redação ainda não enviada</p>
         </div>
       <%end%>
-      <div class="text-info">
-      </div>
     </div>
   </div>
-  
-  </div>
 
-  <div class="col-lg-4">
-  
-  <% if @annotations %>
-    <div class="coments" data-text-id="<%= @text_id %>">
-      <h4>Comentários</h4>
-      <% @annotations.each do |key, value| %>
-        <div class="coment" id="COMENT<%=value[:original_id]%>" data-cmref="<%=value[:original_id]%>">
-          <div class="coment_content"><span class="comment_header">Comentário</span><span class="comment_text"><%=value[:parsed]['body'][0]['value'] %></span></div>
-          <div class="coment_author"><span class="author_header">Professor:</span><span class="author_name"><%=value[:parsed]['body'][0]['creator']['name'] %></span></div>
-        </div>
+  <div class="text_info">
+
+    <div class="grade">
+      <h6><%= @text.theme.genre.capitalize %></h6>
+      <h2><%= @text.theme.title.capitalize %></h2>
+      <br>
+      <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
+        <p>Aluno: <%= @text.user.name  %></p>
+        <hr>
+        <%= link_to "Salvar Correção", theme_path(@text.theme.id), data: { confirm: "Seu texto foi enviado!" }, class: "btn btn-primary px-5" %>
+      <% else %>
+        <p>Professor: <%= @text.theme.user.name %></p>
+        <hr>
+        <%= link_to "Apagar texto", theme_text_path, method: :delete, 
+          data: { confirm: "Atenção! Deseja apagar seu texto?" }, class: "btn btn-outline-danger mt-2" %>
       <% end %>
     </div>
-  <% end %>
-  </div>
-</div>
-
-
-
-
-<!-- 
-  <%= link_to 'Voltar', :back %>
-  <a href="#"><i class="fas fa-arrow-up"></i></a>
   
+    <hr>
+    <% if @annotations %>
+      <div class="coments" data-text-id="<%= @text_id %>">
+        <h4>Comentários</h4>
+        <% @annotations.each do |key, value| %>
+          <div class="coment" id="COMENT<%=value[:original_id]%>" data-cmref="<%=value[:original_id]  %>">
+            <div class="coment_content"><span class="comment_header">Comentário</span><span   class="comment_text"><%=value[:parsed]['body'][0]['value'] %></span></div>
+            <div class="coment_author"><span class="author_header">Professor:</span><span   class="author_name"><%=value[:parsed]['body'][0]['creator']['name'] %></span></div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <a href="#"><i class="fas fa-arrow-up"></i></a>
+
+  </div>
+
 </div>
--->
-
-
 
 
 
