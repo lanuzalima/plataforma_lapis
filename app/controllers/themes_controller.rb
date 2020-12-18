@@ -1,9 +1,11 @@
 class ThemesController < ApplicationController
-  before_action :set_theme, only: %i[show destroy update]
+  before_action :set_theme, only: %i[show destroy update edit]
 
   def index
     if current_user.role == "Professor" || current_user.role == "Teacher"
       @themes = Theme.where(user_id: current_user.id)
+      @theme = Theme.new
+      @themes = Theme.global_search(params[:query]) if params[:query].present?
     else
       @themes = Theme.all
     end
@@ -33,13 +35,12 @@ class ThemesController < ApplicationController
   end
 
   def edit
-    @theme = Theme.find(params[:id])
   end
 
   def update
     @theme.update(theme_params)
     redirect_to theme_path(@theme),
-                notice: "Sua proposta foi editada"
+                alert: "Sua proposta foi editada"
   end
 
   def destroy

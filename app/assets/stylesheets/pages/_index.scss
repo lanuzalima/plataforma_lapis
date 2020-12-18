@@ -30,12 +30,52 @@
 .card-theme .card-theme-infos {
   padding: 16px;
 }
-.card-theme .card-theme-infos a {
-  color: rgb(112, 112, 112);
-  text-decoration: none;
-}
 
 .card-theme .card-theme-infos a:hover {
   color: rgb(31, 31, 31);
   text-decoration: none;
+}
+
+.modal-content {
+  border-radius: 8px;
+}
+
+.card-theme-inativo {
+  overflow: hidden;
+  height: 160px;
+  background:#eeeeee;
+  border: 1px solid #dee2e6;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.card-theme-inativo h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  text-decoration: none;
+}
+
+.card-theme-inativo p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .8;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+.text-success {
+  font-weight: bold;
+  color:#128552 !important;
+}
+
+.text-danger {
+  font-weight: bold;
+}
+
+.correction {
+  color: green;
 }

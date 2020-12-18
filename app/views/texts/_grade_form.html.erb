@@ -1,14 +1,14 @@
-<%= simple_form_for(@text) do |f| %>
-  <%= f.input :name, label: "Nome",
-        required: true,
-        autofocus: true %>
-  <%= f.number_field :grade,
-              label: "Nota";
-              value: 1000;
-              min: 0;
-              step: 10;
-              max: 1000; %>
-  <div class="form-actions">
-    <%= f.button :submit, "Atualizar", class: "btn btn-info btn-lg" %>
+<%= simple_form_for [@text.theme, @text] do |f| %>
+  <%= f.error_notification %>
+  <div class="row mx-1">
+  <div class="form-inputs my-2 h6">
+    <%= f.input :grade, min: 0, label: "Inserir nota" %>
   </div>
-  <% end %>
+
+  <div class="form-actions">
+    <%= f.button :submit, "✚", class: "btn-texts btn btn-primary"%>
+  </div>
+  
+
+  </div>
+<% end %>
