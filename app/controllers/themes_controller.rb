@@ -24,11 +24,17 @@ class ThemesController < ApplicationController
     @theme = Theme.new(theme_params)
     @theme.user = current_user
 
-    if @theme.save
+    if @theme.start_date > Time.zone.now && @theme.save
       redirect_to theme_path(@theme)
     else
+      flash.now[:alert] = 'Data não pode ser inferior à atual'
       render 'new'
     end
+    # if @theme.save
+    #   redirect_to theme_path(@theme)
+    # else
+    #   render 'new'
+    # end
   end
 
   def show
