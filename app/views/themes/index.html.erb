@@ -35,6 +35,17 @@
         </div>
       </div>
     </form>
+  <% else %>
+    <form class="form-inline">
+      <%= text_field_tag :query,
+                        params[:query],
+                        class: "form-control col-4 mr-2",
+                        placeholder: "Pesquisar tema"
+                        %>
+          <button name="button" type="submit" class="btn btn-light">
+            <i class="fas fa-search"></i>
+          </button>
+    </form>
   <% end%>
 
 <!-- fim modal -->
