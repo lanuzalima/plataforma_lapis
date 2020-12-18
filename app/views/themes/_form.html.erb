@@ -3,7 +3,7 @@
         <%= simple_form_for(@theme) do |f| %>
         <%= f.error_notification %>
           <div class="form-inputs">
-             <%= f.input :genre, label: "Gênero textual",
+             <%= f.input :genre, label: "Gênero textual", collection: ["Redação ENEM", "Redação", "Conto", "Resenha", "Crônica", "Editorial", "Ensaio"],
                         required: true,
                         autofocus: true %>
             <%= f.input :title, label: "Título / Tema",
