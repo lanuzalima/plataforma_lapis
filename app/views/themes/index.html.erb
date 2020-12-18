@@ -1,5 +1,9 @@
 <div class="container mt-4">
-  <h1 class="my-4">Propostas ativas</h1>
+  <h1 class="my-3">Propostas ativas</h1>
+<!-- Button 'my texts for students' -->
+  <% if current_user.role == "Estudante" || current_user.role == "Student" %>
+    <a href="/user/:id/texts" class="btn btn-primary">Meus textos</a>
+  <% end %>
 
   <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
     <form class="form-inline">

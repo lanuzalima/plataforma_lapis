@@ -10,9 +10,9 @@
       <a href="/themes"> Propostas de Redação </a>
     </li>
     <% if current_user.role == "Estudante" || current_user.role == "Student" %> 
-      <li class="breadcrumb-item">
-        <a href="themes/:id"> Meus textos </a>
-      </li>
+      <%# <li class="breadcrumb-item">
+        <a href="/themes/:id">Proposta de redação</a>
+      </li> %>
     <% end %>
     <li class="breadcrumb-item active" aria-current="page">Enviar texto</li>
   </ol>
