@@ -30,7 +30,6 @@ class ThemesController < ApplicationController
       flash[:alert] = 'Data não pode ser inferior à atual'
       render 'new'
     end
-
     # if @theme.save
     #   redirect_to theme_path(@theme)
     # else
