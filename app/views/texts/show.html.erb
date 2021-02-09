@@ -41,7 +41,7 @@
   <div class="editor_area">
     <div class="tools">
       <div class="row d-block">
-        <h6>Ferramentas</h6>
+        <h6></h6>
       </div>
       <div class="row d-block">
         <div class="tool_name">Desenhar retângulo</div>
@@ -62,15 +62,7 @@
     </div>
   </div>
   
-  <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
-    <div class="grading">
-        <%= render  "grade_form" %>
-    </div>
-  <% else %>
-    <div class="grading student">
-      <span>Sua nota:</span><h6> <%= @text.grade %></h6>
-    </div>
-  <% end %>
+ 
 
   <div class="image-marking-cointainer">
     <div class="text-image" >
@@ -88,21 +80,33 @@
   </div>
 
   <div class="text_info">
-
-    <div class="grade">
-      <h6><%= @text.theme.genre.capitalize %></h6>
-      <h2><%= @text.theme.title.capitalize %></h2>
-      <br>
-      <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
-        <p>Aluno: <%= @text.user.name  %></p>
-        <hr>
+    <div class= "card-theme h-auto w-auto p-3"> 
+      <div class="grade">
+        <h6><%= @text.theme.genre.capitalize %></h6>
+        <h2>"<%= @text.theme.title.capitalize%>"</h2>
+        <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
+          <p>Aluno: <%= @text.user.name  %></p>
+          <br>
+          <div class="grading">
+            <%= render  "grade_form" %>
+          </div>
+          <hr>
         <%= link_to "Salvar Correção", theme_path(@text.theme.id), data: { confirm: "Seu texto foi enviado!" }, class: "btn btn-primary px-5" %>
       <% else %>
         <p>Professor: <%= @text.theme.user.name %></p>
+        <br>
         <hr>
-        <%= link_to "Apagar texto", theme_text_path, method: :delete, 
-          data: { confirm: "Atenção! Deseja apagar seu texto?" }, class: "btn btn-outline-danger mt-2" %>
+        <div class="grading student">
+          <span>Sua nota:</span><h6> <%= @text.grade %></h6>
+        </div>
+        
+        <div class= "justify-content-center">
+          <%= link_to "Apagar texto", theme_text_path, method: :delete, 
+            data: { confirm: "Atenção! Deseja apagar seu texto?" }, class: "btn btn-outline-danger mt-2" %>
+        </div>
       <% end %>
+      <hr>
+      </div>
     </div>
   
     <hr>
