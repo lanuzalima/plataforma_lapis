@@ -34,6 +34,7 @@
         <%= f.error_notification %>
           <div class="form-inputs">            
             <%= f.input :theme_id, as: :hidden, label: false %>
+          <p>(Por favor, evite ambientes escuros e imagens desfocadas.)</p>  
             <%= f.input :photo, as: :file, placeholder: "Foto", label: "Inserir texto" %>
         <!--Botão especial com ícone
             <label  class="btn btn-outline-primary"> Inserir Redação  <i class="fas fa-camera"></i>
@@ -48,7 +49,6 @@
           <div class="form-actions">
             <%= f.button :submit, "Enviar Texto", class: "btn btn-primary px-4"  %>
             <br>
-          <p>Evite ambientes escuros e imagens desfocadas.</p>  
           </div>
         <% end %>   
         </div>
