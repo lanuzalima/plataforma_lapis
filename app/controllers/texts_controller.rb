@@ -36,7 +36,7 @@ class TextsController < ApplicationController
     if @theme.end_date > Date.today
       @text = Text.new
     else
-      flash[:alert] = "Prazo para o envio desta proposta encerrado"
+      flash[:alert] = "Prazo de envio expirado!"
       redirect_to themes_path
     end
   end
