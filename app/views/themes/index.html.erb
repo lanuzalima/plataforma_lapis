@@ -82,7 +82,7 @@
       <% if theme.end_date < Date.today %>
         <div class="card-theme-inativo col-lg-5 mx-2"> 
           <div class="card-lecture-infos-inativo mx-2" >
-            <p>ID: <%= theme.id %> </p>
+            <p>Professor(a): <%= theme.user.name.capitalize %> </p>
             <h2><%= theme.genre.capitalize %>: "<%= link_to"#{theme.title.capitalize}", theme_path(theme) %>"</h2>
             <div class="row mx-auto d-flex justify-content-space-between">
               <p>Data Inicial: <%= theme.start_date.strftime("%d/%m/%Y") %></p>
