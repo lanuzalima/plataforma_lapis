@@ -28,8 +28,8 @@
         <div class="row mx-auto d-flex justify-content-space-between">
           <p>Data Inicial: <%= @theme.start_date.strftime("%d/%m/%Y") %></p>
           &nbsp;&nbsp;
-          <p>Data final: <%= @theme.end_date.strftime("%d/%m/%Y") %> </p>        
-        </div>
+          <p>Data final: <%= @theme.end_date.strftime("%d/%m/%Y") %> </p>  
+          </div>
         <%= simple_form_for [@theme, @text] do |f| %>
         <%= f.error_notification %>
           <div class="form-inputs">            
@@ -43,8 +43,12 @@
             </label> 
         -->
           </div>
+          
+      
           <div class="form-actions">
             <%= f.button :submit, "Enviar Texto", class: "btn btn-primary px-4"  %>
+            <br>
+          <p>Evite ambientes escuros e imagens desfocadas.</p>  
           </div>
         <% end %>   
         </div>
