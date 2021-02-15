@@ -91,7 +91,7 @@
             <%= render  "grade_form" %>
           </div>
           <hr>
-        <%= link_to "Salvar Correção", theme_path(@text.theme.id), data: { confirm: "Seu texto foi enviado!" }, class: "btn btn-primary px-5" %>
+        <%= link_to "Finalizar", theme_path(@text.theme.id), data: { confirm: "Seu texto foi enviado!" }, class: "btn btn-primary px-5" %>
       <% else %>
         <p>Professor: <%= @text.theme.user.name %></p>
         <br>
