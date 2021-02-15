@@ -80,8 +80,8 @@
   </div>
 
   <div class="text_info">
-    <div class= "card-theme h-auto w-auto p-3"> 
-      <div class="grade">
+    <div class= "card-theme h-auto w-auto p-2"> 
+      <div class="coments">
         <h6><%= @text.theme.genre.capitalize %>:</h6>
         <h2>"<%= @text.theme.title.capitalize%>"</h2></h2>
         <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
