@@ -5,7 +5,7 @@ class ThemesController < ApplicationController
     if current_user.role == "Professor" || current_user.role == "Teacher"
       @themes = Theme.where(user_id: current_user.id)
       @theme = Theme.new
-      @themes = Theme.global_search(params[:query]) if params[:query].present?
+      @themes = Theme.global_search("%#{params[:query]}%") if params[:query].present?
     else
       @themes = Theme.all
     end
