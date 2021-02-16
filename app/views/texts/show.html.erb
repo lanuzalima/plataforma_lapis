@@ -80,12 +80,12 @@
   </div>
 
   <div class="text_info">
-    <div class= "card-theme h-auto w-auto p-3"> 
-      <div class="grade">
-        <h6><%= @text.theme.genre.capitalize %></h6>
-        <h2>"<%= @text.theme.title.capitalize%>"</h2>
+    <div class= "card-theme h-auto w-auto p-2"> 
+      <div class="coments">
+        <h6><%= @text.theme.genre.capitalize %>:</h6>
+        <h2>"<%= @text.theme.title.capitalize%>"</h2></h2>
         <% if current_user.role == "Professor" || current_user.role == "Teacher" %>
-          <p>Aluno: <%= @text.user.name  %></p>
+          <p>Aluno: <%= @text.user.name.capitalize%></p>
           <br>
           <div class="grading">
             <%= render  "grade_form" %>
@@ -93,7 +93,7 @@
           <hr>
         <%= link_to "Finalizar", theme_path(@text.theme.id), data: { confirm: "Seu texto foi enviado!" }, class: "btn btn-primary px-5" %>
       <% else %>
-        <p>Professor: <%= @text.theme.user.name %></p>
+        <p>Professor: <%= @text.theme.user.name.capitalize %></p>
         <br>
         <hr>
         <div class="grading student">
