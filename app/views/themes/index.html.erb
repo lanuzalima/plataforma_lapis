@@ -38,15 +38,17 @@
     </form>
   <% else %>
     <form class="form-inline">
-      <%= text_field_tag :query,
-                        params[:query],
-                        class: "form-control col-4 mr-2",
-                        placeholder: "Pesquisar tema"
-                        %>
-          <button name="button" type="submit" class="btn btn-light">
-            <i class="fas fa-search"></i>
-          </button>
-          <a href="/user/:id/texts" class="btn btn-primary mx-2">Meus textos</a>
+      <%= form_tag themes_path, method: :get do %>
+        <%= text_field_tag :query,
+                            params[:query],
+                            class: "form-control col-4 mr-2",
+                            placeholder: "Pesquisar tema"
+                            %>
+        <button name="button" type="submit" class="btn btn-light">
+          <i class="fas fa-search"></i>
+        </button>
+        <a href="/user/:id/texts" class="btn btn-primary mx-2">Meus textos</a>
+      <% end %>
     </form>
   <% end%>
 

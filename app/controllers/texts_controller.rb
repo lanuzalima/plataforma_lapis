@@ -33,7 +33,7 @@ class TextsController < ApplicationController
 
   def new
     @theme = Theme.find(params[:theme_id])
-    if @theme.end_date > Date.today
+    if @theme.end_date >= Date.today
       @text = Text.new
     else
       flash[:alert] = "Prazo de envio expirado!"
