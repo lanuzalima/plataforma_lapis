@@ -14,5 +14,4 @@ Rails.application.routes.draw do
     resources :texts, only: %i[destroy update]
   end
   get '/user/:id/texts', to: 'texts#index', as: 'user_texts'
-  get 'users/password', to: redirect("/")
 end
