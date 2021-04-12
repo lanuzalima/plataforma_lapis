@@ -1,4 +1,7 @@
 Rails.application.configure do
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: "plataformalapis.bt.enap.gov.br" }
+
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
@@ -8,9 +11,7 @@ Rails.application.configure do
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
   }
-  config.action_mailer.default_url_options = { host: "plataformalapis.bt.enap.gov.br" }
   # Settings specified here will take precedence over those in config/application.rb.
-
   # Code is not reloaded between requests.
   config.cache_classes = true
 

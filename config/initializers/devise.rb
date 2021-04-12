@@ -39,7 +39,7 @@ Devise.setup do |config|
   config.mailer = 'Devise::Mailer'
 
   # Configure the parent class responsible to send e-mails.
-  #NESTA TENTATIVA, TENTEI COLOCAR ISSO, CASO NÃO TENHA MUDANÇA, ALTERAR
+
   config.parent_mailer = 'ActionMailer::Base'
 
   # ==> ORM configuration
