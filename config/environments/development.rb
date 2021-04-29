@@ -20,7 +20,7 @@ Rails.application.configure do
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
   }
-  config.action_mailer.default_url_options = { host: 'plataformalapis.bt.enap.gov.br' }
+  config.action_mailer.default_url_options = { host: 'https://plataformalapis.herokuapp.com/' }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
